@@ -83,27 +83,27 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             {/* Left Column */}
             <div className="lg:col-span-8 space-y-12">
               {/* Challenge */}
-              <div>
+              <div className="group p-6 sm:p-7 rounded-2xl bg-red-50/40 border border-red-100 hover:border-red-200 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <span className="text-xs font-bold uppercase tracking-wider text-red-600 block mb-2">
                   The Operational Challenge
                 </span>
-                <h2 className="text-2xl font-bold text-[#212121] mb-4">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-red-700 transition-colors">
                   Problem Context & System Demands
                 </h2>
-                <p className="text-base text-gray-600 leading-relaxed">
+                <p className="text-base text-slate-600 leading-relaxed">
                   {project.challenge}
                 </p>
               </div>
 
               {/* Architectural Solution */}
-              <div>
+              <div className="group p-6 sm:p-7 rounded-2xl bg-[#f0f9ff]/60 border border-[#b3e5fc]/80 hover:border-[#0288d1] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#0288d1] block mb-2">
                   Technical Implementation
                 </span>
-                <h2 className="text-2xl font-bold text-[#212121] mb-4">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-[#0288d1] transition-colors">
                   System Architecture & Data Strategy
                 </h2>
-                <p className="text-base text-gray-600 leading-relaxed">
+                <p className="text-base text-slate-700 leading-relaxed font-medium">
                   {project.architecture}
                 </p>
               </div>
@@ -117,11 +117,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   {project.keyFeatures.map((feat) => (
                     <div
                       key={feat}
-                      className="p-4 rounded-xl bg-gray-50 border border-gray-200/80 flex items-start gap-3 text-sm text-gray-800"
+                      className="group p-4.5 rounded-2xl bg-slate-50 border border-slate-200/90 flex items-start gap-3.5 text-sm text-slate-800 hover:border-[#0288d1] hover:bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                     >
                       <Icon
                         name="check-circle"
-                        className="w-4 h-4 text-[#0288d1] mt-0.5 flex-shrink-0"
+                        className="w-4 h-4 text-[#0288d1] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform"
                       />
                       <span>{feat}</span>
                     </div>
@@ -133,17 +133,17 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             {/* Right Sidebar */}
             <div className="lg:col-span-4 space-y-6">
               {/* Spec Box */}
-              <div className="p-6 rounded-xl bg-gray-50 border border-gray-200/90 space-y-6">
+              <div className="group p-7 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300 space-y-6">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-[#0288d1] mb-2">
                     System Classification
                   </h3>
-                  <div className="p-3 rounded-lg bg-white border border-gray-200 text-xs font-semibold text-gray-800">
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 text-xs font-semibold text-slate-800 group-hover:border-[#03a9f4] transition-colors">
                     {project.systemType}
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 pt-5">
+                <div className="border-t border-slate-200 pt-5">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-[#0288d1] mb-3">
                     Target Architectural Metrics
                   </h3>
@@ -151,9 +151,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     {project.metrics.map((m) => (
                       <div
                         key={m.label}
-                        className="p-2.5 rounded-lg bg-white border border-gray-200 flex items-center justify-between"
+                        className="p-3 rounded-xl bg-white border border-slate-200 flex items-center justify-between hover:border-[#03a9f4] hover:shadow-xs transition-all duration-200"
                       >
-                        <span className="text-xs text-gray-600">{m.label}</span>
+                        <span className="text-xs text-slate-600">{m.label}</span>
                         <span className="text-xs font-bold text-[#0288d1]">
                           {m.value}
                         </span>
@@ -162,7 +162,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 pt-5">
+                <div className="border-t border-slate-200 pt-5">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-[#0288d1] mb-2.5">
                     Technology Stack
                   </h3>
@@ -170,7 +170,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs px-2.5 py-1 rounded bg-white text-gray-800 border border-gray-200 font-medium"
+                        className="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-800 border border-slate-200 font-medium hover:border-[#03a9f4] hover:bg-[#f0f9ff] transition-colors"
                       >
                         {tech}
                       </span>
@@ -178,13 +178,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 pt-5">
+                <div className="border-t border-slate-200 pt-5">
                   <Button
                     href="/contact"
                     variant="primary"
                     size="md"
-                    className="w-full justify-center"
-                    icon={<Icon name="arrow-right" className="w-3.5 h-3.5" />}
+                    className="w-full justify-center shadow-sm hover:shadow-md hover:scale-[1.02] transition-all"
+                    icon={<Icon name="arrow-right" className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />}
                   >
                     Inquire About This Blueprint
                   </Button>

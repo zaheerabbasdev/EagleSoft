@@ -72,10 +72,10 @@ export default function FAQPage() {
               return (
                 <div
                   key={faq.id}
-                  className={`rounded-xl border transition-all duration-200 overflow-hidden ${
+                  className={`group rounded-2xl border transition-all duration-300 overflow-hidden ${
                     isOpen
-                      ? "border-[#03a9f4] bg-white shadow-sm"
-                      : "border-gray-200/90 bg-white hover:border-gray-300"
+                      ? "border-[#0288d1] bg-white shadow-lg -translate-y-0.5"
+                      : "border-slate-200/90 bg-white hover:border-[#0288d1] hover:shadow-md hover:-translate-y-0.5"
                   }`}
                 >
                   <button
@@ -83,25 +83,25 @@ export default function FAQPage() {
                     className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4]"
                     aria-expanded={isOpen}
                   >
-                    <span className="text-base sm:text-lg font-bold text-[#212121]">
+                    <span className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0288d1] transition-colors">
                       {faq.question}
                     </span>
                     <span
-                      className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
+                      className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                         isOpen
-                          ? "bg-[#b3e5fc]/60 text-[#0288d1]"
-                          : "bg-gray-100 text-gray-500"
+                          ? "bg-[#0288d1] text-white shadow-2xs rotate-180"
+                          : "bg-slate-100 text-slate-500 group-hover:bg-[#b3e5fc]/60 group-hover:text-[#0288d1]"
                       }`}
                     >
                       <Icon
-                        name={isOpen ? "chevron-up" : "chevron-down"}
+                        name="chevron-down"
                         className="w-3.5 h-3.5"
                       />
                     </span>
                   </button>
 
                   {isOpen && (
-                    <div className="px-6 pb-6 pt-1 border-t border-gray-100 text-sm sm:text-base text-gray-600 leading-relaxed fade-in">
+                    <div className="px-6 pb-6 pt-1 border-t border-slate-100 text-sm sm:text-base text-slate-600 leading-relaxed">
                       {faq.answer}
                     </div>
                   )}
@@ -111,15 +111,15 @@ export default function FAQPage() {
           </div>
 
           {/* Additional Inquiries Card */}
-          <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-gray-50 border border-gray-200 text-center">
-            <h3 className="text-lg font-bold text-[#212121] mb-2">
+          <div className="mt-14 p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:-translate-y-1 transition-all duration-300 text-center">
+            <h3 className="text-xl font-bold text-slate-900 mb-2">
               Have a question not listed here?
             </h3>
-            <p className="text-sm text-gray-600 mb-6 max-w-md mx-auto">
+            <p className="text-sm text-slate-600 mb-6 max-w-md mx-auto leading-relaxed">
               Our engineering team is happy to review your specific requirements or answer any architectural questions directly.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button href="/contact" variant="primary" size="md">
+              <Button href="/contact" variant="primary" size="md" className="shadow-sm hover:shadow-md hover:scale-[1.02] transition-all">
                 Contact Our Scoping Team
               </Button>
             </div>

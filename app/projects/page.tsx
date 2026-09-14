@@ -59,19 +59,19 @@ export default function ProjectsPage() {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="flex flex-col justify-between rounded-xl bg-white border border-gray-200/90 shadow-sm hover:shadow-md hover:border-[#03a9f4] transition-all duration-200 overflow-hidden"
+                className="group flex flex-col justify-between rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-2 transition-all duration-300 overflow-hidden"
               >
                 {/* Project Header Spec Strip */}
-                <div className="p-6 bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-b border-gray-100">
+                <div className="p-6 bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-b border-slate-100 group-hover:from-[#e1f5fe] group-hover:to-[#b3e5fc]/50 transition-colors duration-300">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-white text-[#0288d1] border border-[#b3e5fc]">
+                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs group-hover:border-[#0288d1] transition-colors">
                       {project.category}
                     </span>
-                    <span className="text-[10px] font-mono text-gray-500 font-semibold">
+                    <span className="text-[10px] font-mono text-slate-500 font-semibold">
                       {project.systemType}
                     </span>
                   </div>
-                  <h2 className="text-xl font-bold text-[#212121] leading-snug">
+                  <h2 className="text-xl font-bold text-slate-900 leading-snug group-hover:text-[#0288d1] transition-colors">
                     {project.title}
                   </h2>
                 </div>
@@ -79,18 +79,18 @@ export default function ProjectsPage() {
                 {/* Project Body */}
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
                       {project.description}
                     </p>
 
                     {/* Metrics Banner */}
-                    <div className="grid grid-cols-3 gap-2 p-3 rounded-lg bg-gray-50 border border-gray-100 mb-5 text-center">
+                    <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200/80 mb-5 text-center group-hover:border-[#b3e5fc] group-hover:bg-[#f0f9ff]/40 transition-colors">
                       {project.metrics.map((m) => (
                         <div key={m.label}>
                           <div className="text-xs font-bold text-[#0288d1]">
                             {m.value}
                           </div>
-                          <div className="text-[10px] text-gray-500 truncate">
+                          <div className="text-[10px] text-slate-500 truncate">
                             {m.label}
                           </div>
                         </div>
@@ -99,14 +99,14 @@ export default function ProjectsPage() {
 
                     {/* Technologies */}
                     <div className="mb-6">
-                      <span className="block text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-2">
+                      <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
                         Technologies:
                       </span>
                       <div className="flex flex-wrap gap-1.5">
                         {project.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="text-xs px-2.5 py-0.5 rounded bg-gray-100 text-gray-700 font-medium"
+                            className="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-[#0288d1] hover:text-white transition-colors"
                           >
                             {tech}
                           </span>
@@ -115,15 +115,15 @@ export default function ProjectsPage() {
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="text-xs font-bold text-[#0288d1] hover:text-[#03a9f4] inline-flex items-center gap-1.5"
+                      className="text-xs font-bold text-[#0288d1] group-hover:text-[#03a9f4] inline-flex items-center gap-1.5 focus-visible:outline-none"
                     >
                       <span>Detailed Architecture Specs</span>
-                      <Icon name="arrow-right" className="w-3 h-3" />
+                      <Icon name="arrow-right" className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                     </Link>
-                    <span className="text-[10px] text-gray-400 font-mono">
+                    <span className="text-[10px] text-slate-400 font-mono">
                       Case Specs
                     </span>
                   </div>

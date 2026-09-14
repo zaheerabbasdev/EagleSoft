@@ -70,17 +70,19 @@ export default function CareersPage() {
             {principles.map((p) => (
               <div
                 key={p.title}
-                className="p-6 rounded-xl bg-gray-50/80 border border-gray-200/90 shadow-sm"
+                className="group p-8 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center mb-4">
-                  <Icon name={p.icon} className="w-5 h-5" />
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                    <Icon name={p.icon} className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2.5 group-hover:text-[#0288d1] transition-colors">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {p.desc}
+                  </p>
                 </div>
-                <h3 className="text-lg font-bold text-[#212121] mb-2">
-                  {p.title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {p.desc}
-                </p>
               </div>
             ))}
           </div>
@@ -88,28 +90,28 @@ export default function CareersPage() {
       </section>
 
       {/* Open Positions Section (Honest status, zero fake jobs) */}
-      <section className="py-16 sm:py-24 bg-gray-50/70 border-b border-gray-100">
+      <section className="py-16 sm:py-24 bg-slate-50/70 border-b border-slate-100">
         <Container size="narrow">
           <div className="text-center mb-10">
             <span className="text-xs font-bold uppercase tracking-wider text-[#0288d1]">
               Current Vacancies
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#212121] mt-1">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
               Open Positions
             </h2>
           </div>
 
           {/* Prompt-mandated honest vacancy message */}
-          <div className="p-8 sm:p-10 rounded-2xl bg-white border border-gray-200 shadow-sm text-center">
-            <div className="w-12 h-12 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center mx-auto mb-4">
-              <Icon name="briefcase" className="w-5 h-5" />
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] transition-all duration-300 text-center">
+            <div className="w-14 h-14 rounded-2xl bg-[#b3e5fc]/50 text-[#0288d1] flex items-center justify-center mx-auto mb-5 shadow-2xs">
+              <Icon name="briefcase" className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-bold text-[#212121] mb-3">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
               No open positions at the moment.
             </h3>
 
-            <p className="text-sm sm:text-base text-gray-600 max-w-lg mx-auto leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed mb-6">
               We are always interested in connecting with talented people. Send us your CV and we may contact you when a suitable opportunity becomes available.
             </p>
 

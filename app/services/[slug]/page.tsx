@@ -101,12 +101,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   {service.capabilities.map((cap) => (
                     <div
                       key={cap.title}
-                      className="p-5 rounded-xl bg-gray-50 border border-gray-200/90"
+                      className="group p-6 rounded-2xl bg-slate-50/80 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300"
                     >
-                      <h3 className="text-base font-bold text-[#212121] mb-1.5">
-                        {cap.title}
+                      <h3 className="text-base font-bold text-slate-900 mb-2 group-hover:text-[#0288d1] transition-colors flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#03a9f4] group-hover:scale-150 transition-transform" />
+                        <span>{cap.title}</span>
                       </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">
+                      <p className="text-sm text-slate-600 leading-relaxed">
                         {cap.description}
                       </p>
                     </div>
@@ -123,11 +124,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   {service.features.map((feat) => (
                     <div
                       key={feat}
-                      className="flex items-start gap-2.5 p-3 rounded-lg border border-gray-100 bg-white text-sm text-gray-700"
+                      className="group flex items-start gap-2.5 p-3.5 rounded-xl border border-slate-200/90 bg-white hover:border-[#0288d1] hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 text-sm text-slate-700"
                     >
                       <Icon
                         name="check-circle"
-                        className="w-4 h-4 text-[#0288d1] mt-0.5 flex-shrink-0"
+                        className="w-4 h-4 text-[#0288d1] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform"
                       />
                       <span>{feat}</span>
                     </div>
@@ -139,17 +140,17 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             {/* Right Sidebar Specs */}
             <div className="lg:col-span-4 space-y-6">
               {/* Specs Box */}
-              <div className="p-6 rounded-xl bg-gray-50 border border-gray-200/90 space-y-6">
+              <div className="group p-7 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300 space-y-6">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-wider text-[#0288d1] mb-2">
                     Target Organizations
                   </h3>
-                  <p className="text-xs text-gray-700 leading-relaxed font-medium">
+                  <p className="text-xs text-slate-700 leading-relaxed font-medium">
                     {service.targetAudience}
                   </p>
                 </div>
 
-                <div className="border-t border-gray-200 pt-5">
+                <div className="border-t border-slate-200 pt-5">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-[#0288d1] mb-2.5">
                     Recommended Technologies
                   </h3>
@@ -157,7 +158,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                     {service.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs px-2.5 py-1 rounded bg-white text-gray-800 border border-gray-200 font-medium"
+                        className="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-800 border border-slate-200 font-medium hover:border-[#03a9f4] hover:bg-[#f0f9ff] transition-colors"
                       >
                         {tech}
                       </span>
@@ -165,11 +166,11 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 pt-5">
+                <div className="border-t border-slate-200 pt-5">
                   <h3 className="text-xs font-bold uppercase tracking-wider text-[#0288d1] mb-2.5">
                     Deliverables
                   </h3>
-                  <ul className="space-y-2 text-xs text-gray-600">
+                  <ul className="space-y-2 text-xs text-slate-600">
                     {service.deliverables.map((deliv) => (
                       <li key={deliv} className="flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#03a9f4]" />
@@ -179,13 +180,13 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   </ul>
                 </div>
 
-                <div className="border-t border-gray-200 pt-5">
+                <div className="border-t border-slate-200 pt-5">
                   <Button
                     href="/contact"
                     variant="primary"
                     size="md"
-                    className="w-full justify-center"
-                    icon={<Icon name="arrow-right" className="w-3.5 h-3.5" />}
+                    className="w-full justify-center shadow-sm hover:shadow-md hover:scale-[1.02] transition-all"
+                    icon={<Icon name="arrow-right" className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />}
                   >
                     Request a Quote
                   </Button>

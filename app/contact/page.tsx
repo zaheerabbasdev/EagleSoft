@@ -118,33 +118,33 @@ export default function ContactPage() {
 
               <div className="space-y-4">
                 {/* Location */}
-                <div className="p-5 rounded-xl bg-gray-50 border border-gray-200/90 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0">
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="location-dot" className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
                       Office Location
                     </div>
-                    <div className="text-sm font-semibold text-[#212121] mt-0.5">
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
                       {siteConfig.address.full}
                     </div>
-                    <div className="text-xs text-gray-500 mt-0.5">
+                    <div className="text-xs text-slate-500 mt-0.5">
                       {siteConfig.address.country}
                     </div>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="p-5 rounded-xl bg-gray-50 border border-gray-200/90 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0">
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="envelope" className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
                       Direct Email
                     </div>
-                    <div className="text-sm font-semibold text-[#212121] mt-0.5">
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5">
                       <a
                         href={`mailto:${siteConfig.email}`}
                         className="hover:text-[#0288d1] transition-colors"
@@ -152,43 +152,43 @@ export default function ContactPage() {
                         {siteConfig.email}
                       </a>
                     </div>
-                    <div className="text-xs text-gray-500 mt-0.5">
+                    <div className="text-xs text-slate-500 mt-0.5">
                       Inquiries acknowledged within 1 business day
                     </div>
                   </div>
                 </div>
 
                 {/* Phone */}
-                <div className="p-5 rounded-xl bg-gray-50 border border-gray-200/90 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0">
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="phone" className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
                       Phone & WhatsApp
                     </div>
-                    <div className="text-sm font-semibold text-[#212121] mt-0.5">
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
                       {siteConfig.phone}
                     </div>
-                    <div className="text-xs text-gray-500 mt-0.5">
+                    <div className="text-xs text-slate-500 mt-0.5">
                       Mon – Fri, 9:00 AM – 6:00 PM PKT
                     </div>
                   </div>
                 </div>
 
                 {/* Hours */}
-                <div className="p-5 rounded-xl bg-gray-50 border border-gray-200/90 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0">
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="clock" className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-gray-400">
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
                       Business Hours
                     </div>
-                    <div className="text-sm font-semibold text-[#212121] mt-0.5">
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
                       {siteConfig.businessHours.days}: {siteConfig.businessHours.hours}
                     </div>
-                    <div className="text-xs text-gray-500 mt-0.5">
+                    <div className="text-xs text-slate-500 mt-0.5">
                       {siteConfig.businessHours.status}
                     </div>
                   </div>
