@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { projectsData } from "@/src/config/projects";
 import { Container } from "@/src/components/common/Container";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
@@ -25,18 +26,73 @@ export function ProjectsPreview() {
               className="group flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#03a9f4] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               {/* Project Card Header Graphic */}
-              <div className="p-6 bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-b border-slate-100">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs">
-                    {project.category}
-                  </span>
-                  <span className="text-[10px] font-mono text-slate-500 font-semibold">
-                    {project.systemType}
-                  </span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#0288d1] transition-colors leading-snug">
-                  {project.title}
-                </h3>
+              <div className="relative h-44 sm:h-48 border-b border-slate-100 overflow-hidden">
+                {project.image ? (
+                  <>
+                    <div
+                      className={`absolute inset-0 ${
+                        project.kind === "design"
+                          ? "bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/40"
+                          : "bg-slate-900"
+                      }`}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} preview`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className={
+                          project.kind === "design"
+                            ? "object-contain p-8"
+                            : "object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
+                        }
+                      />
+                    </div>
+                    {project.kind !== "design" && (
+                      <div
+                        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10"
+                        aria-hidden="true"
+                      />
+                    )}
+                    <div className="absolute top-0 inset-x-0 p-5 flex items-center justify-between">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs">
+                        {project.category}
+                      </span>
+                      <span
+                        className={`text-[10px] font-mono font-semibold ${
+                          project.kind === "design" ? "text-slate-500" : "text-white/80"
+                        }`}
+                      >
+                        {project.systemType}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-0 inset-x-0 p-5">
+                      <h3
+                        className={`text-lg font-bold leading-snug transition-colors ${
+                          project.kind === "design"
+                            ? "text-slate-900 group-hover:text-[#0288d1]"
+                            : "text-white drop-shadow-sm"
+                        }`}
+                      >
+                        {project.title}
+                      </h3>
+                    </div>
+                  </>
+                ) : (
+                  <div className="p-6 h-full flex flex-col justify-between bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs">
+                        {project.category}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-500 font-semibold">
+                        {project.systemType}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#0288d1] transition-colors leading-snug">
+                      {project.title}
+                    </h3>
+                  </div>
+                )}
               </div>
 
               {/* Project Card Body */}
@@ -83,14 +139,14 @@ export function ProjectsPreview() {
                     href={`/projects/${project.slug}`}
                     className="text-xs font-bold text-[#0288d1] group-hover:text-[#03a9f4] inline-flex items-center gap-1.5"
                   >
-                    <span>View Architecture Specs</span>
+                    <span>{project.kind === "design" ? "View Design Details" : "View Architecture Specs"}</span>
                     <Icon
                       name="arrow-right"
                       className="w-3 h-3 group-hover:translate-x-1 transition-transform"
                     />
                   </Link>
                   <span className="text-[10px] text-slate-400 font-mono">
-                    Specifications
+                    {project.kind === "design" ? "Design Specs" : "Specifications"}
                   </span>
                 </div>
               </div>
