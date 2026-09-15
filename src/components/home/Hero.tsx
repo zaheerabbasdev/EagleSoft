@@ -91,13 +91,13 @@ export function Hero() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12] mb-6 drop-shadow-md">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white! tracking-tight leading-[1.12] mb-6 drop-shadow-md">
               {currentSlide.titleLine1} <br />
               <span className="text-[#03a9f4]">{currentSlide.titleHighlight}</span>
             </h1>
 
             {/* Description Paragraph */}
-            <p className="text-base sm:text-lg lg:text-xl text-slate-200 leading-relaxed max-w-2xl mb-10 drop-shadow-sm font-normal">
+            <p className="text-base sm:text-lg lg:text-xl text-slate-200! leading-relaxed max-w-2xl mb-10 drop-shadow-sm font-normal">
               {currentSlide.description}
             </p>
 

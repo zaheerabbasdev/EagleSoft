@@ -41,11 +41,11 @@ export function CtaSection() {
           <span>Direct Enterprise Partnership</span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-5">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white! tracking-tight leading-tight mb-5">
           Ready to Build Reliable Software for Your Business?
         </h2>
 
-        <p className="text-white/90 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+        <p className="text-white/90! text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
           From custom operational systems to consumer-facing mobile and web applications, EagleSoft delivers software that performs reliably at scale.
         </p>
 

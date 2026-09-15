@@ -140,7 +140,7 @@ export function QuoteModal() {
               <Icon name="shield" className="w-3.5 h-3.5" />
               <span>EagleSoft Pvt Ltd • Confidential Scoping</span>
             </div>
-            <h3 id="quote-modal-title" className="text-lg sm:text-xl font-extrabold text-white mt-0.5">
+            <h3 id="quote-modal-title" className="text-lg sm:text-xl font-extrabold text-white! mt-0.5">
               Request a Project Quotation & Architecture Review
             </h3>
           </div>
