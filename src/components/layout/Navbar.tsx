@@ -35,11 +35,14 @@ export function Navbar() {
           : "bg-white border-b border-slate-100"
       }`}
     >
+      {/* Brand Accent Strip */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-[#0288d1] via-[#03a9f4] to-[#448aff]" aria-hidden="true" />
+
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-[76px]">
           {/* Brand Logo */}
           <div className="flex-shrink-0">
-            <Logo variant="light" showTagline={false} />
+            <Logo variant="light" size="md" showTagline={false} />
           </div>
 
           {/* Desktop Navigation Links (Clean, Corporate) */}

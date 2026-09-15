@@ -16,15 +16,30 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0288d1] text-white border-t border-[#03a9f4]/30">
+    <footer className="relative bg-[#0288d1] text-white border-t border-[#03a9f4]/30 overflow-hidden">
+      {/* Ambient Background Treatment (matches CTA section's premium finish) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -top-24 left-1/4 w-[500px] h-[300px] bg-[#03a9f4]/25 blur-3xl rounded-full pointer-events-none"
+        aria-hidden="true"
+      />
+
       {/* Upper Main Footer Content */}
-      <div className="py-14 sm:py-16">
+      <div className="relative py-14 sm:py-16">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
             {/* Column 1: Brand & Overview (Spans 2 cols on lg) */}
             <div className="lg:col-span-2 space-y-4">
-              <Logo variant="dark" showTagline={true} />
-              <p className="text-white/90 text-sm leading-relaxed max-w-sm">
+              <Logo variant="dark" size="lg" showTagline={true} />
+              <p className="text-white! text-sm leading-relaxed max-w-sm">
                 {siteConfig.positioning}
               </p>
 
@@ -67,7 +82,7 @@ export function Footer() {
 
             {/* Column 2: Core Services */}
             <div>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-[#b3e5fc] mb-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white! mb-4">
                 Services
               </h3>
               <ul className="space-y-2.5 text-sm">
@@ -86,7 +101,7 @@ export function Footer() {
 
             {/* Column 3: Business Solutions */}
             <div>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-[#b3e5fc] mb-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white! mb-4">
                 Solutions
               </h3>
               <ul className="space-y-2.5 text-sm">
@@ -105,7 +120,7 @@ export function Footer() {
 
             {/* Column 4: Company & Legal */}
             <div>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-[#b3e5fc] mb-4">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white! mb-4">
                 Company
               </h3>
               <ul className="space-y-2.5 text-sm mb-6">
