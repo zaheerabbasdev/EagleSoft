@@ -170,6 +170,9 @@ export default function ContactPage() {
                     <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
                       {siteConfig.phone}
                     </div>
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
+                      {siteConfig.phone2}
+                    </div>
                     <div className="text-xs text-slate-500 mt-0.5">
                       Mon – Fri, 9:00 AM – 6:00 PM PKT
                     </div>

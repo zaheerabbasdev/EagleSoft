@@ -8,16 +8,16 @@ export interface ProjectItem {
   id: string;
   slug: string;
   title: string;
-  category: "Web Applications" | "Mobile Applications" | "E-Commerce" | "Business Systems" | "POS & Inventory" | "Custom Software" | "Branding & Design";
+  category: "Web Applications" | "Mobile Applications" | "E-Commerce" | "Business Systems" | "POS & Inventory" | "Custom Software";
   tagline: string;
   description: string;
   challenge: string;
   architecture: string;
   keyFeatures: string[];
   technologies: string[];
-  systemType: "Production Prototype" | "Solution Architecture" | "Internal Framework" | "Client System Template" | "Client Deliverable";
+  systemType: "Production Prototype" | "Solution Architecture" | "Internal Framework" | "Client System Template";
   metrics: { label: string; value: string }[];
-  /** Real client deliverable image (logo/app icon). When present, shown in card & detail headers instead of the abstract gradient block. */
+  /** Cover image path. When present, shown filling the card & detail headers instead of the abstract gradient block. */
   image?: string;
   /** "design" projects use creative-brief style copy & headings; "software" (default) uses architecture-style copy & headings. */
   kind?: "software" | "design";
@@ -31,7 +31,6 @@ export const projectCategories = [
   "Business Systems",
   "POS & Inventory",
   "Custom Software",
-  "Branding & Design",
 ] as const;
 
 export const projectsData: ProjectItem[] = [
@@ -201,178 +200,6 @@ export const projectsData: ProjectItem[] = [
       { label: "Patient Scheduling", value: "Zero Overlaps" },
       { label: "Record Retrieval", value: "< 1 second" },
       { label: "Data Security", value: "AES-256 Encrypted" },
-    ],
-  },
-
-  // --- Real Client Deliverables: Branding & Identity Design ---
-  {
-    id: "graphix-online-branding",
-    slug: "graphix-online-branding",
-    title: "Graphix Online Brand Identity",
-    category: "Branding & Design",
-    tagline: "Circular brand mark and identity system for a creative design studio.",
-    description:
-      "A complete logo and brand identity designed for Graphix Online, a creative design studio, balancing a playful color pencil motif with a clean, professional wordmark.",
-    challenge:
-      "The client needed a brand mark that felt creative and approachable while still reading as professional and trustworthy to prospective design clients, and that stayed legible at small social media avatar sizes.",
-    architecture:
-      "Designed as a circular badge mark so it drops cleanly into social profile photos and app avatars, with a simplified flat-color pencil icon and a paired script/sans wordmark for warmth and clarity.",
-    keyFeatures: [
-      "Primary circular logo mark optimized for avatar & favicon use",
-      "Color pencil icon symbolizing creative design services",
-      "Paired script and sans-serif wordmark lockup",
-      "Brand color palette (red, green, blue accents on brand blue)",
-      "Delivered in layered source files plus PNG/SVG exports",
-    ],
-    technologies: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
-    systemType: "Client Deliverable",
-    image: "/images/projects/graphix-online-logo.png",
-    kind: "design",
-    metrics: [
-      { label: "Deliverable", value: "Full Logo Suite" },
-      { label: "Formats", value: "PNG / SVG" },
-      { label: "Use Case", value: "Social & Web" },
-    ],
-  },
-  {
-    id: "hussain-mobile-branding",
-    slug: "hussain-mobile-branding",
-    title: "Hussain Mobile Brand Identity",
-    category: "Branding & Design",
-    tagline: "Retail storefront logo and signage mark for a mobile phone dealership.",
-    description:
-      "A bold, high-contrast logo built for Hussain Mobile, a mobile phone retail business, designed to be instantly recognizable on storefront signage, receipts, and packaging.",
-    challenge:
-      "The client needed a distinctive mark that would stand out on a busy retail street, print cleanly in single-color for signage and stamps, and clearly communicate a technology/mobile retail identity.",
-    architecture:
-      "Built around a familiar tech-adjacent silhouette combined with a custom monogram and orbiting swoosh, with a tagline lockup and a high-contrast black-and-white palette for maximum print versatility.",
-    keyFeatures: [
-      "High-contrast primary mark for storefront signage",
-      "Custom monogram with orbiting accent swoosh",
-      "Tagline lockup: \"The Name of Excellence\"",
-      "Single-color print-safe variant for stamps & receipts",
-      "Delivered in layered source files plus PNG exports",
-    ],
-    technologies: ["Adobe Illustrator", "Adobe Photoshop"],
-    systemType: "Client Deliverable",
-    image: "/images/projects/hussain-mobile-logo.png",
-    kind: "design",
-    metrics: [
-      { label: "Deliverable", value: "Signage-Ready Logo" },
-      { label: "Formats", value: "PNG / Print" },
-      { label: "Use Case", value: "Retail Storefront" },
-    ],
-  },
-  {
-    id: "synonyms-app-icon",
-    slug: "synonyms-app-icon",
-    title: "Synonyms App Icon Design",
-    category: "Branding & Design",
-    tagline: "Mobile app icon design for a synonyms & vocabulary reference app.",
-    description:
-      "A friendly, instantly-readable app icon designed for a mobile dictionary/thesaurus app, built to stand out on a crowded home screen while clearly signaling its purpose.",
-    challenge:
-      "The app needed an icon that communicated \"reference book / vocabulary\" at a glance, stayed legible at the smallest home-screen icon sizes, and matched platform app icon conventions.",
-    architecture:
-      "An open book silhouette paired with a rising sun motif and curved wordmark, set on a solid brand-blue rounded-square tile sized to platform app icon export specifications.",
-    keyFeatures: [
-      "Open book + sunrise icon symbolizing knowledge & discovery",
-      "Curved wordmark integrated into the icon silhouette",
-      "Rounded-square tile matching iOS/Android icon conventions",
-      "Exported at full platform icon size set",
-    ],
-    technologies: ["Adobe Illustrator", "Figma"],
-    systemType: "Client Deliverable",
-    image: "/images/projects/synonyms-app-icon.png",
-    kind: "design",
-    metrics: [
-      { label: "Deliverable", value: "App Icon Set" },
-      { label: "Formats", value: "PNG (all sizes)" },
-      { label: "Platform", value: "iOS & Android" },
-    ],
-  },
-  {
-    id: "scanner-app-icon",
-    slug: "scanner-app-icon",
-    title: "Document Scanner App Icon",
-    category: "Branding & Design",
-    tagline: "Mobile app icon design for a photo-to-text document scanning app.",
-    description:
-      "An app icon designed for a document scanning and text-extraction mobile app, combining an image glyph with a bold typographic mark to communicate the scan-to-text function instantly.",
-    challenge:
-      "The icon needed to visually explain a two-step function (scan an image, extract text) within a single small glyph, while standing out against typical camera/scanner app icons on the store.",
-    architecture:
-      "A layered composition placing a bold 'T' badge over a picture-frame glyph on a warm red tile, giving instant visual shorthand for \"image becomes text\" at a glance.",
-    keyFeatures: [
-      "Layered image + typography glyph composition",
-      "High-contrast red tile for home-screen visibility",
-      "Rounded-square tile matching platform icon conventions",
-      "Exported at full platform icon size set",
-    ],
-    technologies: ["Adobe Illustrator", "Figma"],
-    systemType: "Client Deliverable",
-    image: "/images/projects/scanner-app-icon.png",
-    kind: "design",
-    metrics: [
-      { label: "Deliverable", value: "App Icon Set" },
-      { label: "Formats", value: "PNG (all sizes)" },
-      { label: "Platform", value: "iOS & Android" },
-    ],
-  },
-  {
-    id: "et-brand-identity",
-    slug: "et-brand-identity",
-    title: "ET Brand Identity Design",
-    category: "Branding & Design",
-    tagline: "Abstract monogram logo design built around an 'ET' initial lockup.",
-    description:
-      "A modern abstract monogram logo built around the initials \"ET\", using a dynamic three-color arc motif to suggest movement, technology, and forward momentum.",
-    challenge:
-      "The client wanted a distinctive initials-based mark that avoided looking generic, worked as a standalone icon separate from the initials, and used a multi-color palette without feeling cluttered.",
-    architecture:
-      "A layered teardrop arc in three brand colors wraps around a bold two-letter monogram, allowing the arc motif and the lettermark to be used independently across different brand touchpoints.",
-    keyFeatures: [
-      "Custom two-letter 'ET' monogram lettermark",
-      "Independent three-color arc motif for standalone use",
-      "Palette built for both light and dark applications",
-      "Delivered in layered source files plus PNG/SVG exports",
-    ],
-    technologies: ["Adobe Illustrator", "Adobe Photoshop"],
-    systemType: "Client Deliverable",
-    image: "/images/projects/et-brand-logo.png",
-    kind: "design",
-    metrics: [
-      { label: "Deliverable", value: "Monogram Logo Suite" },
-      { label: "Formats", value: "PNG / SVG" },
-      { label: "Use Case", value: "Multi-Platform Brand" },
-    ],
-  },
-  {
-    id: "ft-brand-identity",
-    slug: "ft-brand-identity",
-    title: "FT Brand Identity Design",
-    category: "Branding & Design",
-    tagline: "Bold interlocking monogram logo built around an 'FT' initial lockup.",
-    description:
-      "A bold, high-contrast monogram logo built around the initials \"FT\", using an interlocking two-tone ribbon shape to create a distinctive, memorable brand mark.",
-    challenge:
-      "The client needed a strong standalone mark that would work as a small app/profile icon, read clearly at a glance, and feel premium without relying on a literal illustration.",
-    architecture:
-      "Two offset ribbon shapes in contrasting brand colors interlock to house the 'F' and 'T' letterforms, with a soft drop-shadow treatment for depth on both light and dark backgrounds.",
-    keyFeatures: [
-      "Custom interlocking two-tone ribbon monogram",
-      "Legible at small avatar & favicon sizes",
-      "Two-color palette with contrast-safe letterforms",
-      "Delivered in layered source files plus PNG exports",
-    ],
-    technologies: ["Adobe Illustrator", "Adobe Photoshop"],
-    systemType: "Client Deliverable",
-    image: "/images/projects/ft-brand-logo.png",
-    kind: "design",
-    metrics: [
-      { label: "Deliverable", value: "Monogram Logo Suite" },
-      { label: "Formats", value: "PNG / SVG" },
-      { label: "Use Case", value: "App & Profile Icon" },
     ],
   },
 ];

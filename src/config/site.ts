@@ -15,13 +15,14 @@ export const siteConfig = {
   description:
     "EagleSoft Pvt Ltd creates modern web, mobile, e-commerce, and custom business software solutions designed to help organizations work smarter, serve customers better, and grow with confidence.",
   url: "https://eaglesoft.pk",
-  email: "contact@eaglesoft.com", // Centralized business email placeholder
-  phone: "+92 300 0000000",       // Centralized contact phone placeholder
+  email: "eaglesoftpvtltd@gmail.com", // Centralized business email placeholder
+  phone: "+92 3139804929",       // Centralized contact phone placeholder
+  phone2: "+92 3015103165",
   address: {
     line1: "Software Technology Park",
-    city: "Islamabad",
+    city: "Shewa Adda Swabi",
     country: "Pakistan",
-    full: "Software Technology Park, Islamabad, Pakistan",
+    full: "Shop No A-8, Abdur Sattar Plaza basement, Shewa adda, swabi, KPK, Pakistan",
   },
   businessHours: {
     days: "Monday – Friday",
@@ -29,11 +30,9 @@ export const siteConfig = {
     status: "Available for consultation and project scoping",
   },
   socialLinks: {
-    linkedin: "", // Official profile link placeholder
-    facebook: "", // Official profile link placeholder
-    instagram: "", // Official profile link placeholder
-    github: "",    // Official profile link placeholder
-    x: "",         // Official profile link placeholder
+    linkedin: "https://www.linkedin.com/company/145187167/admin/dashboard/", // Official profile link placeholder
+    facebook: "https://web.facebook.com/profile.php?id=61594445519730", // Official profile link placeholder
+    
   },
   copyright: "© 2026 EagleSoft Pvt Ltd. All rights reserved.",
 } as const;

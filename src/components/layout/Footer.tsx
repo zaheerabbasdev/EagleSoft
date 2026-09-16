@@ -9,10 +9,7 @@ import { Icon, IconName } from "@/src/components/common/Icon";
 export function Footer() {
   const socialItems: { name: string; icon: IconName; href: string }[] = [
     { name: "LinkedIn", icon: "linkedin", href: siteConfig.socialLinks.linkedin },
-    { name: "GitHub", icon: "github", href: siteConfig.socialLinks.github },
-    { name: "X", icon: "twitter", href: siteConfig.socialLinks.x },
     { name: "Facebook", icon: "facebook", href: siteConfig.socialLinks.facebook },
-    { name: "Instagram", icon: "instagram", href: siteConfig.socialLinks.instagram },
   ];
 
   return (
@@ -66,16 +63,20 @@ export function Footer() {
                 </div>
               </div>
 
-              {/* Social Placeholders */}
+              {/* Social Links */}
               <div className="pt-4 flex items-center gap-3">
                 {socialItems.map((social) => (
-                  <span
+                  <a
                     key={social.name}
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
-                    title={`${social.name} (Official profile)`}
+                    href={social.href || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${social.name} (opens in a new tab)`}
+                    title={social.name}
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
                   >
                     <Icon name={social.icon} className="w-4 h-4" />
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -157,7 +158,7 @@ export function Footer() {
         <Container>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/80">
             <div>
-              <p>{siteConfig.copyright}</p>
+              <p className="text-white/80!">{siteConfig.copyright}</p>
             </div>
             <div className="flex items-center gap-6">
               <Link href="/privacy-policy" className="hover:text-white transition-colors">
