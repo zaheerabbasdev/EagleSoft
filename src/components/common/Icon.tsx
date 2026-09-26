@@ -39,6 +39,7 @@ import {
   faLayerGroup,
   faLock,
   faPaperPlane,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faLinkedinIn,
@@ -94,6 +95,7 @@ export const icons = {
   layers: faLayerGroup,
   lock: faLock,
   send: faPaperPlane,
+  star: faStar,
 
   // Brands
   linkedin: faLinkedinIn,

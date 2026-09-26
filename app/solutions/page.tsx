@@ -6,6 +6,7 @@ import { SectionHeading } from "@/src/components/common/SectionHeading";
 import { Button } from "@/src/components/common/Button";
 import { Icon } from "@/src/components/common/Icon";
 import { CtaSection } from "@/src/components/home/CtaSection";
+import { Testimonials } from "@/src/components/home/Testimonials";
 
 export const metadata: Metadata = {
   title: "Business Solutions & Industry Architectures",
@@ -165,6 +166,8 @@ export default function SolutionsPage() {
           </div>
         </Container>
       </section>
+
+      <Testimonials />
 
       {/* Corporate CTA */}
       <CtaSection />

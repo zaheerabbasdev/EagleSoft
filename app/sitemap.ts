@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
 import { servicesData } from "@/src/config/services";
-import { projectsData } from "@/src/config/projects";
 
 export const dynamic = "force-static";
 
@@ -32,12 +31,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const projectRoutes = projectsData.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...serviceRoutes, ...projectRoutes];
+  return [...staticRoutes, ...serviceRoutes];
 }

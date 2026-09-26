@@ -5,6 +5,7 @@ import { SectionHeading } from "@/src/components/common/SectionHeading";
 import { Button } from "@/src/components/common/Button";
 import { Icon } from "@/src/components/common/Icon";
 import { CtaSection } from "@/src/components/home/CtaSection";
+import { TrustMetrics } from "@/src/components/home/TrustMetrics";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -68,6 +69,8 @@ export default function AboutPage() {
           />
         </Container>
       </section>
+
+      <TrustMetrics />
 
       {/* Who We Are & Story */}
       <section className="py-16 sm:py-24 bg-white border-b border-slate-100">

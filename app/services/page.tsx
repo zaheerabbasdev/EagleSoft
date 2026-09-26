@@ -7,6 +7,8 @@ import { SectionHeading } from "@/src/components/common/SectionHeading";
 import { Button } from "@/src/components/common/Button";
 import { Icon } from "@/src/components/common/Icon";
 import { CtaSection } from "@/src/components/home/CtaSection";
+import { TechStackShowcase } from "@/src/components/home/TechStackShowcase";
+import { Testimonials } from "@/src/components/home/Testimonials";
 
 export const metadata: Metadata = {
   title: "Software Engineering Services",
@@ -28,6 +30,8 @@ export default function ServicesPage() {
           />
         </Container>
       </section>
+
+      <TechStackShowcase />
 
       {/* Services List with Expanded Animated Specifications */}
       <section className="py-16 sm:py-24 bg-white border-b border-slate-100">
@@ -163,6 +167,8 @@ export default function ServicesPage() {
           </div>
         </Container>
       </section>
+
+      <Testimonials />
 
       {/* Corporate CTA */}
       <CtaSection />

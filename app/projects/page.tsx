@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { projectsData, projectCategories } from "@/src/config/projects";
 import { Container } from "@/src/components/common/Container";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
-import { Button } from "@/src/components/common/Button";
 import { Icon } from "@/src/components/common/Icon";
+import { Button } from "@/src/components/common/Button";
 import { CtaSection } from "@/src/components/home/CtaSection";
+import { Testimonials } from "@/src/components/home/Testimonials";
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
@@ -24,15 +23,15 @@ export default function ProjectsPage() {
       <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/70 to-white border-b border-gray-100">
         <Container>
           <SectionHeading
-            eyebrow="Our Work"
-            title="Software Projects & Brand Design Work"
-            description="Explore our production-grade software architectures, modular system templates, and real brand identity & app icon design work delivered for clients."
+            eyebrow="Live in the Real World"
+            title="Projects We've Built & Delivered"
+            description="Real websites and mobile apps we've designed, built, and shipped for clients — plus what's currently in progress."
             align="center"
           />
         </Container>
       </section>
 
-      {/* Projects Showcase & Filter */}
+      {/* Projects Grid & Filter */}
       <section className="py-16 sm:py-24 bg-white border-b border-gray-100">
         <Container>
           {/* Category Filter Tabs */}
@@ -57,142 +56,73 @@ export default function ProjectsPage() {
 
           {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="group flex flex-col justify-between rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-2 transition-all duration-300 overflow-hidden"
-              >
-                {/* Project Header Spec Strip */}
-                <div className="relative h-48 sm:h-52 border-b border-slate-100 overflow-hidden">
-                  {project.image ? (
-                    <>
-                      <div
-                        className={`absolute inset-0 ${
-                          project.kind === "design"
-                            ? "bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/40 group-hover:from-[#e1f5fe] group-hover:to-[#b3e5fc]/50"
-                            : "bg-slate-900"
-                        } transition-colors duration-300`}
+            {filteredProjects.map((project) => {
+              const isComingSoon = project.status === "In Progress";
+
+              return (
+                <div
+                  key={project.id}
+                  className="group flex flex-col justify-between rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+                >
+                  <div className="p-6 bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-b border-slate-100 group-hover:from-[#e1f5fe] group-hover:to-[#b3e5fc]/50 transition-colors duration-300">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs group-hover:border-[#0288d1] transition-colors">
+                        {project.category}
+                      </span>
+                      <span
+                        className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+                          isComingSoon
+                            ? "bg-amber-100 text-amber-700"
+                            : "bg-emerald-100 text-emerald-700"
+                        }`}
                       >
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} preview`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                          className={
-                            project.kind === "design"
-                              ? "object-contain p-9"
-                              : "object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
-                          }
-                        />
+                        {isComingSoon ? "In Progress" : "Live"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#0288d1] flex-shrink-0 group-hover:bg-[#0288d1] group-hover:text-white transition-colors">
+                        <Icon name={project.icon} className="w-5 h-5" />
                       </div>
-                      {project.kind !== "design" && (
-                        <div
-                          className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10"
-                          aria-hidden="true"
-                        />
-                      )}
-                      <div className="absolute top-0 inset-x-0 p-6 flex items-center justify-between">
-                        <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs group-hover:border-[#0288d1] transition-colors">
-                          {project.category}
-                        </span>
-                        <span
-                          className={`text-[10px] font-mono font-semibold ${
-                            project.kind === "design" ? "text-slate-500" : "text-white/80"
-                          }`}
-                        >
-                          {project.systemType}
-                        </span>
-                      </div>
-                      <div className="absolute bottom-0 inset-x-0 p-6">
-                        <h2
-                          className={`text-lg font-bold leading-snug transition-colors ${
-                            project.kind === "design"
-                              ? "text-slate-900 group-hover:text-[#0288d1]"
-                              : "text-white drop-shadow-sm"
-                          }`}
-                        >
-                          {project.title}
-                        </h2>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="p-6 h-full flex flex-col justify-between bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 group-hover:from-[#e1f5fe] group-hover:to-[#b3e5fc]/50 transition-colors duration-300">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs group-hover:border-[#0288d1] transition-colors">
-                          {project.category}
-                        </span>
-                        <span className="text-[10px] font-mono text-slate-500 font-semibold">
-                          {project.systemType}
-                        </span>
-                      </div>
-                      <h2 className="text-xl font-bold text-slate-900 leading-snug group-hover:text-[#0288d1] transition-colors">
+                      <h2 className="text-lg font-bold text-slate-900 leading-snug group-hover:text-[#0288d1] transition-colors">
                         {project.title}
                       </h2>
                     </div>
-                  )}
-                </div>
+                  </div>
 
-                {/* Project Body */}
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
+                  <div className="p-6 flex-1 flex flex-col justify-between">
+                    <p className="text-sm text-slate-600 leading-relaxed mb-6">
                       {project.description}
                     </p>
 
-                    {/* Metrics Banner */}
-                    <div className="grid grid-cols-3 gap-2 p-3 rounded-xl bg-slate-50 border border-slate-200/80 mb-5 text-center group-hover:border-[#b3e5fc] group-hover:bg-[#f0f9ff]/40 transition-colors">
-                      {project.metrics.map((m) => (
-                        <div key={m.label}>
-                          <div className="text-xs font-bold text-[#0288d1]">
-                            {m.value}
-                          </div>
-                          <div className="text-[10px] text-slate-500 truncate">
-                            {m.label}
-                          </div>
-                        </div>
-                      ))}
+                    <div className="pt-4 border-t border-slate-100">
+                      {project.url ? (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-bold text-[#0288d1] group-hover:text-[#03a9f4] inline-flex items-center gap-1.5"
+                        >
+                          <span>Visit {project.category === "Android App" ? "on Play Store" : "Live Site"}</span>
+                          <Icon
+                            name="arrow-right"
+                            className="w-3 h-3 group-hover:translate-x-1 transition-transform"
+                          />
+                        </a>
+                      ) : (
+                        <span className="text-xs font-semibold text-slate-400">
+                          Coming soon — check back for updates
+                        </span>
+                      )}
                     </div>
-
-                    {/* Technologies */}
-                    <div className="mb-6">
-                      <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
-                        Technologies:
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 font-medium hover:bg-[#0288d1] hover:text-white transition-colors"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="text-xs font-bold text-[#0288d1] group-hover:text-[#03a9f4] inline-flex items-center gap-1.5 focus-visible:outline-none"
-                    >
-                      <span>{project.kind === "design" ? "View Design Details" : "Detailed Architecture Specs"}</span>
-                      <Icon name="arrow-right" className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                    <span className="text-[10px] text-slate-400 font-mono">
-                      {project.kind === "design" ? "Design Specs" : "Case Specs"}
-                    </span>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {filteredProjects.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-gray-500 text-base">
-                No solution models currently listed under this category.
-              </p>
+              <p className="text-gray-500 text-base">No projects currently listed under this category.</p>
               <Button
                 variant="secondary"
                 size="sm"
@@ -205,6 +135,8 @@ export default function ProjectsPage() {
           )}
         </Container>
       </section>
+
+      <Testimonials />
 
       {/* Corporate CTA */}
       <CtaSection />

@@ -76,6 +76,27 @@ export interface WhyUsItem {
   highlightBadge: string;
 }
 
+export interface TrustMetricItem {
+  id: string;
+  value: string;
+  label: string;
+  icon: IconName;
+}
+
+export interface TestimonialItem {
+  id: string;
+  quote: string;
+  attribution: string;
+  rating: number; // 1-5
+}
+
+export interface TeamMemberItem {
+  id: string;
+  name: string;
+  role: string;
+  initials: string;
+}
+
 export const heroBackgroundSlidesData: HeroBackgroundSlide[] = [
   {
     id: "slide-software",
@@ -459,4 +480,62 @@ export const whyChooseUsData: WhyUsItem[] = [
     highlightBadge: "Always Here",
     featureList: ["Direct WhatsApp & phone support", "Regular maintenance checkups", "Fast updates on request"],
   },
+];
+
+// PLACEHOLDER — update with real, verified figures before they're presented as facts.
+export const trustMetricsData: TrustMetricItem[] = [
+  { id: "metric-projects", value: "15+", label: "Projects Delivered", icon: "code" },
+  { id: "metric-satisfaction", value: "100%", label: "Client Satisfaction", icon: "handshake" },
+  { id: "metric-support", value: "24/7", label: "Support Availability", icon: "headset" },
+  { id: "metric-ownership", value: "100%", label: "Code Ownership Transferred", icon: "shield" },
+];
+
+export const techStackData: string[] = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Node.js",
+  "React Native",
+  "PostgreSQL",
+  "MySQL",
+  "Tailwind CSS",
+  "Docker",
+  "Redis",
+  "AWS",
+  "DigitalOcean",
+  "GitHub Actions",
+  "Figma",
+];
+
+// PLACEHOLDER — replace with real client testimonials once collected; do not present as real quotes until verified.
+export const testimonialsData: TestimonialItem[] = [
+  {
+    id: "testimonial-1",
+    quote:
+      "They took the time to actually understand how our store runs before writing a single line of code. The system fits our daily routine instead of forcing us to change how we work.",
+    attribution: "Retail Store Owner",
+    rating: 5,
+  },
+  {
+    id: "testimonial-2",
+    quote:
+      "Weekly progress demos meant we always knew exactly where the project stood. No surprises, no jargon — just clear communication from start to launch.",
+    attribution: "Operations Manager, Logistics Business",
+    rating: 5,
+  },
+  {
+    id: "testimonial-3",
+    quote:
+      "Support didn't stop after go-live. Whenever we've needed a fix or a small change, the response has been quick and straightforward.",
+    attribution: "Clinic Administrator",
+    rating: 5,
+  },
+];
+
+// PLACEHOLDER — replace with your real team members' names, roles, and initials.
+export const teamData: TeamMemberItem[] = [
+  { id: "team-1", name: "[Your Name]", role: "Founder & CEO", initials: "FC" },
+  { id: "team-2", name: "[Team Member]", role: "Lead Software Engineer", initials: "SE" },
+  { id: "team-3", name: "[Team Member]", role: "UI/UX Design Lead", initials: "UX" },
+  { id: "team-4", name: "[Team Member]", role: "Project Manager", initials: "PM" },
 ];
