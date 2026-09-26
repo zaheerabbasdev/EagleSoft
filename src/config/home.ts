@@ -534,8 +534,8 @@ export const testimonialsData: TestimonialItem[] = [
 
 // PLACEHOLDER — replace with your real team members' names, roles, and initials.
 export const teamData: TeamMemberItem[] = [
-  { id: "team-1", name: "[Your Name]", role: "Founder & CEO", initials: "FC" },
-  { id: "team-2", name: "[Team Member]", role: "Lead Software Engineer", initials: "SE" },
-  { id: "team-3", name: "[Team Member]", role: "UI/UX Design Lead", initials: "UX" },
-  { id: "team-4", name: "[Team Member]", role: "Project Manager", initials: "PM" },
+  { id: "team-1", name: "Zaheer Abbas", role: "Founder & CEO", initials: "ZA" },
+  { id: "team-2", name: "Shah Hussain", role: "Senior Software Engineer", initials: "SH" },
+  { id: "team-3", name: "Muhammad Dawood", role: "DevOps Engineer", initials: "MD" },
+  { id: "team-4", name: "Muhammad Naeem", role: "Full Stack Developer", initials: "MN" },
 ];
