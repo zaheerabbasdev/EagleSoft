@@ -3,8 +3,6 @@ import Image from "next/image";
 import React from "react";
 import eagleIcon from "@/public/images/eaglesoft-icon.png";
 import eagleIconWhite from "@/public/images/eaglesoft-icon-white.png";
-import eagleWordmark from "@/public/images/eaglesoft-wordmark.png";
-import eagleWordmarkWhite from "@/public/images/eaglesoft-wordmark-white.png";
 
 interface LogoProps {
   variant?: "light" | "dark"; // "light" = for white/light bg; "dark" = for #0288d1/dark bg
@@ -15,9 +13,9 @@ interface LogoProps {
 }
 
 const sizeClasses = {
-  sm: { icon: "h-8 sm:h-9", wordmark: "h-4 sm:h-[18px]" },
-  md: { icon: "h-9 sm:h-10", wordmark: "h-[18px] sm:h-5" },
-  lg: { icon: "h-12 sm:h-14", wordmark: "h-6 sm:h-7" },
+  sm: { icon: "h-8 sm:h-9", wordmark: "text-lg sm:text-xl" },
+  md: { icon: "h-9 sm:h-10", wordmark: "text-xl sm:text-2xl" },
+  lg: { icon: "h-12 sm:h-14", wordmark: "text-2xl sm:text-3xl" },
 };
 
 export function Logo({
@@ -29,7 +27,6 @@ export function Logo({
 }: LogoProps) {
   const isDarkBg = variant === "dark";
   const iconSrc = isDarkBg ? eagleIconWhite : eagleIcon;
-  const wordmarkSrc = isDarkBg ? eagleWordmarkWhite : eagleWordmark;
   const dims = sizeClasses[size];
 
   const content = (
@@ -42,12 +39,13 @@ export function Logo({
         className={`w-auto flex-shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-105 ${dims.icon}`}
       />
       <div className="flex flex-col justify-center gap-1">
-        <Image
-          src={wordmarkSrc}
-          alt="EagleSoft"
-          priority
-          className={`w-auto ${dims.wordmark}`}
-        />
+        <span
+          className={`font-extrabold tracking-tight leading-none ${dims.wordmark} ${
+            isDarkBg ? "text-white" : "text-slate-900"
+          }`}
+        >
+          Eagle<span className={isDarkBg ? "text-[#b3e5fc]" : "text-[#0288d1]"}>Soft</span>
+        </span>
         {showTagline && (
           <span
             className={`text-[10px] font-semibold tracking-wide uppercase ${

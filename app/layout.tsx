@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "@/src/lib/fontawesome";
 import "./globals.css";
 import { siteConfig } from "@/src/config/site";
@@ -7,12 +6,6 @@ import { Navbar } from "@/src/components/layout/Navbar";
 import { Footer } from "@/src/components/layout/Footer";
 import { QuoteModalProvider } from "@/src/context/QuoteModalContext";
 import { QuoteModal } from "@/src/components/common/QuoteModal";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://eaglesoft.pk"),
@@ -61,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col font-sans bg-white text-[#212121]">
         <QuoteModalProvider>
           <Navbar />
