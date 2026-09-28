@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { projectsData } from "@/src/config/projects";
 import { Container } from "@/src/components/common/Container";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
@@ -26,8 +27,26 @@ export function ProjectsPreview() {
               className="group flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#03a9f4] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
               {/* Project Card Header */}
-              <div className="p-6 bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-b border-slate-100">
-                <div className="flex items-center justify-between mb-3">
+              <div
+                className={`relative p-6 border-b border-slate-100 ${
+                  project.featureImage
+                    ? "min-h-40 flex flex-col justify-between overflow-hidden bg-white"
+                    : "bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30"
+                }`}
+              >
+                {project.featureImage && (
+                  <>
+                    <Image
+                      src={project.featureImage}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover opacity-40 group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
+                  </>
+                )}
+                <div className="relative flex items-center justify-between mb-3">
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs">
                     {project.category}
                   </span>
@@ -35,10 +54,20 @@ export function ProjectsPreview() {
                     Live
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#0288d1] flex-shrink-0 group-hover:bg-[#0288d1] group-hover:text-white transition-colors">
-                    <Icon name={project.icon} className="w-4.5 h-4.5" />
-                  </div>
+                <div className="relative flex items-center gap-3">
+                  {project.appIcon ? (
+                    <Image
+                      src={project.appIcon}
+                      alt={`${project.title} app icon`}
+                      width={44}
+                      height={44}
+                      className="w-11 h-11 object-contain drop-shadow-lg flex-shrink-0"
+                    />
+                  ) : (
+                    <div className="w-11 h-11 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#0288d1] flex-shrink-0 group-hover:bg-[#0288d1] group-hover:text-white transition-colors">
+                      <Icon name={project.icon} className="w-4.5 h-4.5" />
+                    </div>
+                  )}
                   <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#0288d1] transition-colors leading-snug">
                     {project.title}
                   </h3>

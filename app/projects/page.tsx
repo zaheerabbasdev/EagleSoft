@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { projectsData, projectCategories } from "@/src/config/projects";
 import { Container } from "@/src/components/common/Container";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
@@ -64,8 +65,26 @@ export default function ProjectsPage() {
                   key={project.id}
                   className="group flex flex-col justify-between rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-2 transition-all duration-300 overflow-hidden"
                 >
-                  <div className="p-6 bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-b border-slate-100 group-hover:from-[#e1f5fe] group-hover:to-[#b3e5fc]/50 transition-colors duration-300">
-                    <div className="flex items-center justify-between mb-4">
+                  <div
+                    className={`relative p-6 border-b border-slate-100 ${
+                      project.featureImage
+                        ? "min-h-44 flex flex-col justify-between overflow-hidden bg-white"
+                        : "bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 group-hover:from-[#e1f5fe] group-hover:to-[#b3e5fc]/50 transition-colors duration-300"
+                    }`}
+                  >
+                    {project.featureImage && (
+                      <>
+                        <Image
+                          src={project.featureImage}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                          className="object-cover opacity-40 group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
+                      </>
+                    )}
+                    <div className="relative flex items-center justify-between mb-4">
                       <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs group-hover:border-[#0288d1] transition-colors">
                         {project.category}
                       </span>
@@ -79,10 +98,20 @@ export default function ProjectsPage() {
                         {isComingSoon ? "In Progress" : "Live"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#0288d1] flex-shrink-0 group-hover:bg-[#0288d1] group-hover:text-white transition-colors">
-                        <Icon name={project.icon} className="w-5 h-5" />
-                      </div>
+                    <div className="relative flex items-center gap-3">
+                      {project.appIcon ? (
+                        <Image
+                          src={project.appIcon}
+                          alt={`${project.title} app icon`}
+                          width={48}
+                          height={48}
+                          className="w-12 h-12 object-contain drop-shadow-lg flex-shrink-0"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#0288d1] flex-shrink-0 group-hover:bg-[#0288d1] group-hover:text-white transition-colors">
+                          <Icon name={project.icon} className="w-5 h-5" />
+                        </div>
+                      )}
                       <h2 className="text-lg font-bold text-slate-900 leading-snug group-hover:text-[#0288d1] transition-colors">
                         {project.title}
                       </h2>
