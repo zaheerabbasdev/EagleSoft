@@ -17,7 +17,7 @@ export const siteConfig = {
   url: "https://eaglesoft.pk",
   email: "eaglesoftpvtltd@gmail.com", // Centralized business email placeholder
   phone: "+92 3139804929",       // Centralized contact phone placeholder
-  phone2: "+92 3015103165",
+  phone2: "+92 3239827216",
   address: {
     line1: "Software Technology Park",
     city: "Shewa Adda Swabi",
