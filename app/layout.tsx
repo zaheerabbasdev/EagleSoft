@@ -10,7 +10,7 @@ import { QuoteModal } from "@/src/components/common/QuoteModal";
 export const metadata: Metadata = {
   metadataBase: new URL("https://eaglesoft.pk"),
   title: {
-    default: "EagleSoft Pvt Ltd | Software & Digital Solutions",
+    default: "EagleSoft Pvt Ltd",
     template: "%s | EagleSoft Pvt Ltd",
   },
   description: siteConfig.description,
