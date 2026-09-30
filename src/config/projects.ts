@@ -31,6 +31,8 @@ export const projectsData: ProjectItem[] = [
       "A service business website for hybrid vehicle battery repair, diagnostics, and replacement, serving hybrid car owners across Islamabad and Gujranwala.",
     url: "https://hybridisb.com/",
     icon: "laptop-code",
+    appIcon: "/images/hybridhub-icon.png",
+    featureImage: "/images/hybridhub-feature.jpg",
     status: "Live",
   },
   {
@@ -41,6 +43,8 @@ export const projectsData: ProjectItem[] = [
       "A logistics and freight company website covering air and sea freight, road transportation, customs clearance, and warehouse management.",
     url: "https://www.albazshippingservices.com/",
     icon: "truck-fast",
+    appIcon: "/images/albaz-icon.png",
+    featureImage: "/images/albaz-feature.jpg",
     status: "Live",
   },
   {
@@ -51,6 +55,8 @@ export const projectsData: ProjectItem[] = [
       "A curated e-commerce store based in Islamabad selling lifestyle products including mobile accessories and apparel.",
     url: "https://ranimall.com",
     icon: "cart-shopping",
+    appIcon: "/images/ranimall-icon.png",
+    featureImage: "/images/ranimall-feature.jpg",
     status: "Live",
   },
 
