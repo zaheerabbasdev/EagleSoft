@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { servicesData } from "@/src/config/services";
 import { Container } from "@/src/components/common/Container";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
@@ -18,11 +17,12 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="bg-white">
+    <div>
       {/* Hero Header */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/60 to-white border-b border-slate-100">
+      <section className="py-16 sm:py-24 page-hero border-b border-[#efedf5]">
         <Container>
           <SectionHeading
+            variant="dark"
             eyebrow="Engineering Services"
             title="Comprehensive Software Solutions for Modern Enterprises"
             description="From initial architectural scoping to full-stack engineering, cloud deployment, and continuous support, we build software designed around your specific business operations."
@@ -34,7 +34,7 @@ export default function ServicesPage() {
       <TechStackShowcase />
 
       {/* Services List with Expanded Animated Specifications */}
-      <section className="py-16 sm:py-24 bg-white border-b border-slate-100">
+      <section className="py-16 sm:py-24 bg-white border-b border-[#efedf5]">
         <Container>
           <div className="space-y-16 sm:space-y-20">
             {servicesData.map((service, index) => {
@@ -44,7 +44,7 @@ export default function ServicesPage() {
                 <div
                   key={service.id}
                   id={service.slug}
-                  className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] transition-all duration-300"
+                  className="group relative p-8 sm:p-10 lg:p-12 rounded-3xl bg-white border border-[#e7e5ef] shadow-2xs hover:shadow-xl hover:border-[#7c3aed]/60 transition-all duration-300"
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
                     {/* Text Column */}
@@ -54,37 +54,37 @@ export default function ServicesPage() {
                       }`}
                     >
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300">
+                        <div className="w-14 h-14 rounded-2xl bg-[#7c3aed]/15 text-[#6d28d9] flex items-center justify-center font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#7c3aed] group-hover:text-white transition-all duration-300">
                           <Icon name={service.iconName} className="w-6 h-6" />
                         </div>
                         <div>
-                          <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+                          <span className="text-xs font-mono font-bold text-[#64748b] uppercase tracking-wider">
                             SERVICE 0{index + 1}
                           </span>
-                          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-[#0288d1] transition-colors">
+                          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0f172a] group-hover:text-[#6d28d9] transition-colors">
                             {service.title}
                           </h2>
                         </div>
                       </div>
 
-                      <p className="text-base text-slate-600 leading-relaxed">
+                      <p className="text-base text-[#475569] leading-relaxed">
                         {service.fullDescription}
                       </p>
 
                       {/* Features Grid */}
                       <div>
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-[#0288d1] mb-3">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-[#6d28d9] mb-3">
                           Key Capabilities & Deliverables
                         </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {service.features.map((feature) => (
                             <div
                               key={feature}
-                              className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#03a9f4] hover:bg-[#f0f9ff]/40 hover:-translate-y-0.5 hover:shadow-xs transition-all flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
+                              className="p-3.5 rounded-xl bg-white border border-[#e7e5ef] hover:border-[#7c3aed]/60 hover:bg-[#7c3aed]/[0.08] hover:-translate-y-0.5 hover:shadow-xs transition-all flex items-start gap-2.5 text-xs sm:text-sm text-[#334155]"
                             >
                               <Icon
                                 name="check"
-                                className="w-3.5 h-3.5 text-[#0288d1] mt-0.5 flex-shrink-0"
+                                className="w-3.5 h-3.5 text-[#6d28d9] mt-0.5 flex-shrink-0"
                               />
                               <span>{feature}</span>
                             </div>
@@ -119,25 +119,25 @@ export default function ServicesPage() {
                         isEven ? "lg:order-1" : "lg:order-2"
                       }`}
                     >
-                      <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300 space-y-5">
+                      <div className="p-8 rounded-3xl bg-white border border-[#e7e5ef] shadow-2xs hover:shadow-xl hover:shadow-[#7c3aed]/10 hover:border-[#7c3aed]/60 hover:-translate-y-1.5 transition-all duration-300 space-y-5">
                         <div>
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">
                             Target Operations
                           </span>
-                          <p className="text-sm font-semibold text-slate-900 mt-1">
+                          <p className="text-sm font-semibold text-[#0f172a] mt-1">
                             {service.targetAudience}
                           </p>
                         </div>
 
-                        <div className="border-t border-slate-200 pt-4">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                        <div className="border-t border-[#e7e5ef] pt-4">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">
                             Recommended Technology Stack
                           </span>
                           <div className="flex flex-wrap gap-1.5 mt-2">
                             {service.technologies.map((tech) => (
                               <span
                                 key={tech}
-                                className="text-xs px-2.5 py-1 rounded-lg bg-white text-slate-800 border border-slate-200 font-medium hover:border-[#03a9f4] hover:bg-[#f0f9ff] transition-colors"
+                                className="text-xs px-2.5 py-1 rounded-lg bg-white text-[#1e293b] border border-[#e7e5ef] font-medium hover:border-[#7c3aed]/60 hover:bg-[#7c3aed]/[0.08] transition-colors"
                               >
                                 {tech}
                               </span>
@@ -145,14 +145,14 @@ export default function ServicesPage() {
                           </div>
                         </div>
 
-                        <div className="border-t border-slate-200 pt-4">
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                        <div className="border-t border-[#e7e5ef] pt-4">
+                          <span className="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">
                             Standard Deliverables
                           </span>
-                          <ul className="mt-2 space-y-2 text-xs text-slate-600">
+                          <ul className="mt-2 space-y-2 text-xs text-[#475569]">
                             {service.deliverables.map((deliv) => (
                               <li key={deliv} className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#03a9f4]" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#7c3aed]" />
                                 <span>{deliv}</span>
                               </li>
                             ))}

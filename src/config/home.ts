@@ -151,6 +151,31 @@ export const heroBackgroundSlidesData: HeroBackgroundSlide[] = [
   },
 ];
 
+export interface HeroContent {
+  eyebrow: string;
+  headlineStart: string;
+  headlineHighlight: string;
+  description: string;
+  primaryCtaText: string;
+  secondaryCtaText: string;
+  secondaryCtaHref: string;
+  trustLine: string;
+  metrics: Array<{ value: string; label: string; icon: IconName }>;
+}
+
+// Single static hero used by the dark homepage. Copy is drawn from the first slide above.
+export const heroContent: HeroContent = {
+  eyebrow: heroBackgroundSlidesData[0].badge,
+  headlineStart: "Building Reliable Software.",
+  headlineHighlight: "Empowering Your Business.",
+  description: heroBackgroundSlidesData[0].description,
+  primaryCtaText: heroBackgroundSlidesData[0].primaryCtaText,
+  secondaryCtaText: heroBackgroundSlidesData[0].secondaryCtaText,
+  secondaryCtaHref: heroBackgroundSlidesData[0].secondaryCtaHref,
+  trustLine: "You own 100% of the source code, with clear milestones and dedicated post-launch support.",
+  metrics: heroBackgroundSlidesData[0].metrics,
+};
+
 export const quickBuildOptionsData: QuickBuildOption[] = [
   {
     id: "quick-web",
@@ -222,7 +247,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "Web Development",
     simpleSummary: "Fast, responsive, and beautiful websites and web apps that attract customers and handle high traffic.",
     icon: "laptop-code",
-    colorBg: "bg-blue-50 text-[#0288d1]",
+    colorBg: "bg-blue-500/10 text-[#a78bfa]",
     features: [
       "Mobile-friendly on all phones & tablets",
       "Fast page load speed that ranks on Google",
@@ -237,7 +262,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "Mobile App Development",
     simpleSummary: "Clean, high-speed mobile applications for iPhone and Android that keep customers coming back.",
     icon: "mobile-screen",
-    colorBg: "bg-cyan-50 text-[#03a9f4]",
+    colorBg: "bg-cyan-500/10 text-[#a78bfa]",
     features: [
       "Works on both iOS and Android",
       "Instant push notifications & alerts",
@@ -252,7 +277,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "POS & Inventory Systems",
     simpleSummary: "Never lose track of your stock again. Fast counter billing, barcode scanning, and multi-branch inventory.",
     icon: "boxes-stacked",
-    colorBg: "bg-sky-50 text-[#0288d1]",
+    colorBg: "bg-sky-500/10 text-[#a78bfa]",
     features: [
       "Sub-second barcode scan & receipt printing",
       "Keeps billing even when internet goes down",
@@ -267,7 +292,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "E-Commerce Online Stores",
     simpleSummary: "Complete online shops that make selling easy — from catalog display to checkout and courier shipping.",
     icon: "cart-shopping",
-    colorBg: "bg-indigo-50 text-[#448aff]",
+    colorBg: "bg-indigo-500/10 text-[#60a5fa]",
     features: [
       "Smooth 1-page checkout that boosts orders",
       "Accept cards, bank transfers, or cash on delivery",
@@ -282,7 +307,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "Custom Business Software",
     simpleSummary: "Replace messy spreadsheets with one simple system that handles your invoices, tasks, and employees.",
     icon: "gears",
-    colorBg: "bg-blue-50 text-[#0288d1]",
+    colorBg: "bg-blue-500/10 text-[#a78bfa]",
     features: [
       "Automate daily repetitive paperwork",
       "Digital approvals for expenses and orders",
@@ -297,7 +322,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "UI/UX Interface Design",
     simpleSummary: "Clean, attractive designs that make complex software feel delightfully simple and intuitive to use.",
     icon: "pen-ruler",
-    colorBg: "bg-teal-50 text-[#0288d1]",
+    colorBg: "bg-teal-500/10 text-[#a78bfa]",
     features: [
       "Modern, polished visual design",
       "Interactive prototype to test before coding",
@@ -312,7 +337,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "Cloud & Deployment",
     simpleSummary: "We set up secure cloud servers that keep your website online 24/7 with automatic daily backups.",
     icon: "cloud",
-    colorBg: "bg-cyan-50 text-[#03a9f4]",
+    colorBg: "bg-cyan-500/10 text-[#a78bfa]",
     features: [
       "99.9% uptime with fast cloud servers",
       "Automated daily backups to protect your data",
@@ -327,7 +352,7 @@ export const friendlyServicesData: FriendlyServiceItem[] = [
     title: "Maintenance & Support",
     simpleSummary: "Peace of mind. We maintain your software, fix issues promptly, and add new features as you grow.",
     icon: "headset",
-    colorBg: "bg-sky-50 text-[#0288d1]",
+    colorBg: "bg-sky-500/10 text-[#a78bfa]",
     features: [
       "Direct technical helpline for your team",
       "Regular speed and security checkups",

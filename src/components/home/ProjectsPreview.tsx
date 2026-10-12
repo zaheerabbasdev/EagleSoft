@@ -10,99 +10,80 @@ export function ProjectsPreview() {
   const featured = projectsData.filter((p) => p.status === "Live").slice(0, 3);
 
   return (
-    <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
+    <section className="py-20 sm:py-28 bg-white">
       <Container>
         <SectionHeading
-          eyebrow="Live in the Real World"
-          title="Projects We've Built & Delivered"
+          eyebrow="Our Work"
+          title="Projects We've Built"
+          highlight="& Delivered"
           description="Real websites and mobile apps we've designed, built, and shipped for clients."
-          align="center"
-          className="mb-16"
+          className="mb-14"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featured.map((project) => (
-            <div
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featured.map((project, i) => (
+            <article
               key={project.id}
-              className="group flex flex-col justify-between rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#03a9f4] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              className={`reveal reveal-delay-${i + 1} group card card-hover overflow-hidden flex flex-col`}
             >
-              {/* Project Card Header */}
-              <div
-                className={`relative p-6 border-b border-slate-100 ${
-                  project.featureImage
-                    ? "min-h-40 flex flex-col justify-between overflow-hidden bg-white"
-                    : "bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30"
-                }`}
-              >
+              <div className="relative aspect-[16/10] bg-[#f6f5fb] overflow-hidden">
                 {project.featureImage && (
-                  <>
-                    <Image
-                      src={project.featureImage}
-                      alt=""
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="object-cover opacity-40 group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-white/30 to-transparent" />
-                  </>
+                  <Image
+                    src={project.featureImage}
+                    alt={`${project.title} preview`}
+                    fill
+                    sizes="(min-width: 1024px) 400px, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 )}
-                <div className="relative flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white text-[#0288d1] border border-[#b3e5fc] shadow-2xs">
-                    {project.category}
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700">
-                    Live
+                <div className="absolute top-4 left-4 flex items-center gap-2">
+                  {i === 0 && (
+                    <span className="px-3 py-1 rounded-full text-xs font-bold text-white bg-[#7c3aed] shadow">
+                      Featured
+                    </span>
+                  )}
+                  <span className="px-3 py-1 rounded-full text-xs font-bold text-[#0f172a] bg-white shadow">
+                    {project.status}
                   </span>
                 </div>
-                <div className="relative flex items-center gap-3">
-                  {project.appIcon ? (
+              </div>
+
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-3 mb-3">
+                  {project.appIcon && (
                     <Image
                       src={project.appIcon}
-                      alt={`${project.title} app icon`}
-                      width={44}
-                      height={44}
-                      className="w-11 h-11 object-contain drop-shadow-lg flex-shrink-0"
+                      alt=""
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 object-contain rounded-xl"
                     />
-                  ) : (
-                    <div className="w-11 h-11 rounded-xl bg-white border border-slate-200/80 shadow-xs flex items-center justify-center text-[#0288d1] flex-shrink-0 group-hover:bg-[#0288d1] group-hover:text-white transition-colors">
-                      <Icon name={project.icon} className="w-4.5 h-4.5" />
-                    </div>
                   )}
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#0288d1] transition-colors leading-snug">
-                    {project.title}
-                  </h3>
+                  <h3 className="text-xl font-bold text-[#0f172a]">{project.title}</h3>
                 </div>
-              </div>
-
-              {/* Project Card Body */}
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                  {project.description}
-                </p>
-
-                <div className="pt-4 border-t border-slate-100">
-                  {project.url && (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-bold text-[#0288d1] group-hover:text-[#03a9f4] inline-flex items-center gap-1.5"
-                    >
-                      <span>Visit {project.category === "Android App" ? "on Play Store" : "Live Site"}</span>
-                      <Icon
-                        name="arrow-right"
-                        className="w-3 h-3 group-hover:translate-x-1 transition-transform"
-                      />
-                    </a>
-                  )}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="tag-pill">{project.category}</span>
+                  <span className="tag-pill">{project.status === "Live" ? "Live in production" : "In progress"}</span>
                 </div>
+                <p className="text-sm text-[#64748b] leading-relaxed mb-6 flex-1">{project.description}</p>
+                {project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-[#6d28d9] hover:text-[#4c1d95]"
+                  >
+                    {project.category === "Android App" ? "View on Play Store" : "Visit Live Site"}
+                    <Icon name="arrow-right" className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                )}
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        <div className="mt-14 text-center">
-          <Button href="/projects" variant="secondary" size="md">
+        <div className="mt-12 text-center">
+          <Button href="/projects" variant="secondary" size="md" icon={<Icon name="arrow-right" className="w-3.5 h-3.5" />}>
             View All Projects
           </Button>
         </div>

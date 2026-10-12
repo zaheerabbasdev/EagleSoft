@@ -1,56 +1,84 @@
+"use client";
+
 import React from "react";
+import Image from "next/image";
 import { Container } from "@/src/components/common/Container";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
+import { Button } from "@/src/components/common/Button";
 import { Icon } from "@/src/components/common/Icon";
+import { TrustMetrics } from "@/src/components/home/TrustMetrics";
 import { simpleStepsData } from "@/src/config/home";
+import { useQuoteModal } from "@/src/context/QuoteModalContext";
+
+const stepImages = ["/hero/hero-slide-1.jpg", "/hero/hero-slide-3.jpg", "/hero/hero-slide-2.jpg"];
 
 export function ProcessSection() {
+  const { openQuoteModal } = useQuoteModal();
+
+  const actions = [
+    <Button
+      key="a"
+      variant="primary"
+      size="md"
+      onClick={() => openQuoteModal()}
+      icon={<Icon name="arrow-right" className="w-3.5 h-3.5" />}
+    >
+      Start the Conversation
+    </Button>,
+    <Button key="b" href="/projects" variant="outline-white" size="md" icon={<Icon name="arrow-right" className="w-3.5 h-3.5" />}>
+      See Our Work
+    </Button>,
+    <Button key="c" href="/services/maintenance-support" variant="outline-white" size="md" icon={<Icon name="arrow-right" className="w-3.5 h-3.5" />}>
+      Support Plans
+    </Button>,
+  ];
+
   return (
-    <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
+    <section className="brand-band py-20 sm:py-28 overflow-hidden">
       <Container>
         <SectionHeading
-          eyebrow="Simple 3-Step Process"
-          title="How We Bring Your Software to Life"
-          description="No confusing technical jargon or unexpected surprises. Just clear milestones, weekly progress demos, and dependable execution."
-          align="center"
+          eyebrow="How We Work"
+          title="How We Bring Your Software"
+          highlight="to Life"
+          description="No confusing jargon or unexpected surprises. Just clear milestones, weekly progress demos, and dependable execution."
+          variant="dark"
           className="mb-16"
         />
 
-        {/* 3 Simple, Clear Steps (Array of objects) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {simpleStepsData.map((step) => (
-            <div
-              key={step.number}
-              className="relative p-8 rounded-3xl bg-slate-50/70 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="w-12 h-12 rounded-2xl bg-[#0288d1] text-white flex items-center justify-center font-black text-xl shadow-xs">
+        <div className="space-y-16 lg:space-y-20">
+          {simpleStepsData.map((step, i) => {
+            const reversed = i % 2 === 1;
+            return (
+              <div key={step.number} className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div className={`reveal relative aspect-[16/11] rounded-[28px] overflow-hidden border border-white/10 shadow-2xl shadow-black/50 ${reversed ? "lg:order-2" : ""}`}>
+                  <Image
+                    src={stepImages[i % stepImages.length]}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 560px, 100vw"
+                    className="object-cover"
+                  />
+                  <span className="absolute top-5 left-5 font-display text-5xl font-bold text-white/90 drop-shadow-lg">
                     {step.number}
                   </span>
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-white text-[#0288d1] border border-[#b3e5fc]">
+                </div>
+                <div className={`reveal reveal-delay-1 ${reversed ? "lg:order-1" : ""}`}>
+                  <span className="pill-label pill-label-dark mb-4">
+                    <Icon name={step.icon} className="w-3 h-3" />
                     {step.badge}
                   </span>
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-2 mb-2">{step.title}</h3>
+                  <p className="text-base font-semibold text-[#c4b5fd] mb-4">{step.shortDesc}</p>
+                  <p className="text-base text-white/70 leading-relaxed mb-7">{step.fullDesc}</p>
+                  {actions[i % actions.length]}
                 </div>
-
-                <h3 className="text-xl font-bold text-slate-900 mb-1">
-                  {step.title}
-                </h3>
-                <div className="text-xs font-semibold text-[#0288d1] mb-4">
-                  {step.shortDesc}
-                </div>
-
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  {step.fullDesc}
-                </p>
               </div>
+            );
+          })}
+        </div>
 
-              <div className="mt-8 pt-4 border-t border-slate-200/60 flex items-center gap-2 text-xs font-bold text-[#0288d1]">
-                <Icon name={step.icon} className="w-4 h-4 text-[#03a9f4]" />
-                <span>Step {step.number} Guarantee</span>
-              </div>
-            </div>
-          ))}
+        <div className="mt-20">
+          <TrustMetrics variant="dark" />
         </div>
       </Container>
     </section>

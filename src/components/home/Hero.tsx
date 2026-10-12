@@ -1,182 +1,200 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/src/components/common/Container";
 import { Button } from "@/src/components/common/Button";
 import { Icon } from "@/src/components/common/Icon";
 import { useQuoteModal } from "@/src/context/QuoteModalContext";
-import { heroBackgroundSlidesData } from "@/src/config/home";
+import { heroContent, heroBackgroundSlidesData, friendlyServicesData } from "@/src/config/home";
+
+const heroChecks = ["100% Code Ownership", "Weekly Working Demos", "Post-Launch Support"];
 
 export function Hero() {
   const { openQuoteModal } = useQuoteModal();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const slides = heroBackgroundSlidesData;
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
-  const totalSlides = heroBackgroundSlidesData.length;
+  const go = useCallback(
+    (next: number) => setIndex((next + slides.length) % slides.length),
+    [slides.length]
+  );
 
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
-
-  // Auto-advance slide every 6 seconds when not paused
   useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [isPaused, nextSlide]);
+    if (paused) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const t = window.setInterval(() => setIndex((i) => (i + 1) % slides.length), 5500);
+    return () => window.clearInterval(t);
+  }, [paused, slides.length]);
 
-  const currentSlide = heroBackgroundSlidesData[currentIndex];
+  const current = slides[index];
 
   return (
-    <section
-      className="relative overflow-hidden bg-slate-950 min-h-[580px] lg:min-h-[660px] flex flex-col justify-between"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      aria-roledescription="carousel"
-      aria-label="EagleSoft Corporate Showcase"
-    >
-      {/* Background Images Carousel with Smooth Cross-Fade */}
-      <div className="absolute inset-0 z-0">
-        {heroBackgroundSlidesData.map((slide, index) => {
-          const isActive = index === currentIndex;
-          return (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
-              }`}
-              style={{ transitionProperty: "opacity, transform" }}
-            >
-              <Image
-                src={slide.image}
-                alt={slide.badge}
-                fill
-                priority={index === 0}
-                className="object-cover object-center brightness-[0.85]"
-              />
-            </div>
-          );
-        })}
-
-        {/* High-Contrast Gradient Dark Overlay (Ensures text is 100% readable) */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-900/60"
-          aria-hidden="true"
-        />
-        {/* Subtle Ambient Vignette */}
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-black/40"
-          aria-hidden="true"
-        />
-      </div>
-
-      {/* Hero Foreground Content Upon the Background */}
-      <div className="relative z-10 pt-20 sm:pt-28 pb-14 flex-1 flex flex-col justify-center">
-        <Container>
-          <div className="max-w-3xl text-left">
-            {/* Slide Badge with Live Pulsing Dot */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0288d1]/30 border border-[#03a9f4]/50 text-[#b3e5fc] text-xs font-extrabold tracking-wider uppercase mb-6 backdrop-blur-md shadow-lg">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#03a9f4] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#03a9f4]"></span>
+    <>
+      <section className="brand-band overflow-hidden" aria-label="EagleSoft software company">
+        <Container className="relative pt-14 pb-28 sm:pt-20 sm:pb-32 lg:pt-20 lg:pb-36">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            {/* Copy */}
+            <div className="lg:col-span-6 space-y-7">
+              <span className="reveal pill-label pill-label-dark">
+                <span className="w-2 h-2 rounded-full bg-[#a78bfa] shadow-[0_0_10px_#a78bfa]" aria-hidden="true" />
+                {heroContent.eyebrow}
               </span>
-              <span>{currentSlide.badge}</span>
+
+              <h1 className="reveal reveal-delay-1 text-4xl sm:text-5xl lg:text-[3.6rem] font-extrabold tracking-tight leading-[1.06] text-white">
+                {heroContent.headlineStart}{" "}
+                <span className="text-gradient-soft">{heroContent.headlineHighlight}</span>
+              </h1>
+
+              <p className="reveal reveal-delay-2 text-base sm:text-lg text-white/75 leading-relaxed max-w-xl">
+                {heroContent.description}
+              </p>
+
+              <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-3.5">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={() => openQuoteModal()}
+                  icon={<Icon name="arrow-right" className="w-4 h-4" />}
+                  className="btn-shine"
+                >
+                  {heroContent.primaryCtaText}
+                </Button>
+                <Button
+                  href={heroContent.secondaryCtaHref}
+                  variant="outline-white"
+                  size="lg"
+                  icon={<Icon name="arrow-right" className="w-4 h-4" />}
+                >
+                  {heroContent.secondaryCtaText}
+                </Button>
+              </div>
+
+              <ul className="reveal reveal-delay-4 flex flex-wrap gap-x-6 gap-y-2.5 pt-1">
+                {heroChecks.map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-sm font-semibold text-white/90">
+                    <Icon name="check" className="w-3.5 h-3.5 text-[#a78bfa]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white! tracking-tight leading-[1.12] mb-6 drop-shadow-md">
-              {currentSlide.titleLine1} <br />
-              <span className="text-[#03a9f4]">{currentSlide.titleHighlight}</span>
-            </h1>
-
-            {/* Description Paragraph */}
-            <p className="text-base sm:text-lg lg:text-xl text-slate-200! leading-relaxed max-w-2xl mb-10 drop-shadow-sm font-normal">
-              {currentSlide.description}
-            </p>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => openQuoteModal(currentSlide.titleHighlight)}
-                icon={<Icon name="arrow-right" className="w-4 h-4" />}
-                className="shadow-lg hover:shadow-cyan-500/25 px-8 py-3.5 text-base font-bold bg-[#03a9f4] hover:bg-[#0288d1]"
+            {/* Image slider */}
+            <div className="lg:col-span-6 relative reveal reveal-delay-2">
+              <div
+                className="relative aspect-[4/3] sm:aspect-[16/11] rounded-[28px] overflow-hidden border border-white/15 shadow-2xl shadow-black/50"
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
+                aria-roledescription="carousel"
+                aria-label="EagleSoft work highlights"
               >
-                {currentSlide.primaryCtaText}
-              </Button>
-              <Button
-                href={currentSlide.secondaryCtaHref}
-                variant="outline-white"
-                size="lg"
-                icon={<Icon name="laptop-code" className="w-4 h-4 text-[#b3e5fc]" />}
-                iconPosition="left"
-                className="bg-white/10 backdrop-blur-md border-white/40 hover:bg-white/20 px-8 py-3.5 text-base"
-              >
-                {currentSlide.secondaryCtaText}
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      {/* Dots Carousel Navigation Bar */}
-      <div className="relative z-10 pb-8 sm:pb-12">
-        <Container>
-          <div className="flex items-center justify-between border-t border-white/15 pt-6">
-            {/* Left/Right Arrow Navigation */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={prevSlide}
-                className="p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] cursor-pointer"
-                aria-label="Previous slide"
-              >
-                <Icon name="arrow-left" className="w-3.5 h-3.5" />
-              </button>
-              <button
-                type="button"
-                onClick={nextSlide}
-                className="p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] cursor-pointer"
-                aria-label="Next slide"
-              >
-                <Icon name="arrow-right" className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Clickable Dots Carousel Indicators */}
-            <div className="flex items-center gap-3">
-              {heroBackgroundSlidesData.map((slide, index) => {
-                const isActive = index === currentIndex;
-                return (
-                  <button
+                {slides.map((slide, i) => (
+                  <div
                     key={slide.id}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`transition-all duration-300 rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] ${
-                      isActive
-                        ? "w-8 h-2.5 bg-[#03a9f4] shadow-[0_0_12px_rgba(3,169,244,0.8)]"
-                        : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
-                    }`}
-                    aria-label={`Go to slide ${index + 1}: ${slide.badge}`}
-                  />
-                );
-              })}
-            </div>
+                    className={`absolute inset-0 transition-opacity duration-700 ${i === index ? "opacity-100" : "opacity-0"}`}
+                    aria-hidden={i !== index}
+                  >
+                    <Image
+                      src={slide.image}
+                      alt={slide.badge}
+                      fill
+                      priority={i === 0}
+                      sizes="(min-width: 1024px) 600px, 100vw"
+                      className={`object-cover ${i === index ? "kenburns" : ""}`}
+                    />
+                  </div>
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b1a]/90 via-[#0b0b1a]/10 to-transparent" aria-hidden="true" />
 
-            {/* Slide Counter */}
-            <div className="text-xs font-mono text-slate-400 font-semibold">
-              0{currentIndex + 1} / 0{totalSlides}
+                {/* Caption, counter and dots */}
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 flex items-end justify-between gap-4">
+                  <div className="min-w-0">
+                    <div className="font-display text-2xl font-bold leading-none">
+                      <span className="text-[#a78bfa]">{index + 1}</span>
+                      <span className="text-white/80"> / {slides.length}</span>
+                    </div>
+                    <p className="mt-2 text-sm font-semibold text-white truncate" aria-live="polite">
+                      {current.badge}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => go(index - 1)}
+                      className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur transition-colors cursor-pointer"
+                      aria-label="Previous slide"
+                    >
+                      <Icon name="arrow-left" className="w-3.5 h-3.5" />
+                    </button>
+                    <div className="hidden sm:flex items-center gap-1.5 px-1">
+                      {slides.map((s, i) => (
+                        <button
+                          key={s.id}
+                          type="button"
+                          onClick={() => go(i)}
+                          aria-label={`Show slide ${i + 1}`}
+                          aria-current={i === index}
+                          className={`h-2 rounded-full transition-all cursor-pointer ${
+                            i === index ? "w-7 bg-[#a78bfa]" : "w-2 bg-white/50 hover:bg-white/80"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => go(index + 1)}
+                      className="w-9 h-9 rounded-full bg-white/15 hover:bg-white/30 text-white flex items-center justify-center backdrop-blur transition-colors cursor-pointer"
+                      aria-label="Next slide"
+                    >
+                      <Icon name="arrow-right" className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -top-5 left-4 sm:-left-6 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-2xl shadow-black/30">
+                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed] to-[#2563eb] text-white flex items-center justify-center">
+                  <Icon name="shield" className="w-4 h-4" />
+                </span>
+                <span className="leading-tight">
+                  <span className="block text-sm font-extrabold text-[#0f172a]">100% Code Ownership</span>
+                  <span className="block text-xs text-[#64748b]">Source &amp; IP handed over</span>
+                </span>
+              </div>
             </div>
           </div>
         </Container>
+      </section>
+
+      {/* Service cards overlapping the hero band */}
+      <div className="relative z-10 -mt-14 sm:-mt-16">
+        <Container>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {friendlyServicesData.slice(0, 6).map((service) => (
+              <Link
+                key={service.id}
+                href={`/services/${service.slug}`}
+                className="group card card-hover p-4 sm:p-5 shadow-[0_18px_40px_-24px_rgba(15,23,42,0.35)]"
+              >
+                <span className="flex items-center justify-between gap-2">
+                  <span className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#6d28d9] transition-colors leading-snug">
+                    {service.title}
+                  </span>
+                  <Icon name={service.icon} className="w-4 h-4 text-[#7c3aed] flex-shrink-0" />
+                </span>
+                <span className="mt-1.5 block text-xs text-[#64748b] leading-snug line-clamp-2">
+                  {service.features[0]}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </Container>
       </div>
-    </section>
+    </>
   );
 }
