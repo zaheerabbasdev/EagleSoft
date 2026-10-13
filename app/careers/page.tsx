@@ -41,12 +41,11 @@ export default function CareersPage() {
   };
 
   return (
-    <div>
+    <div className="bg-white">
       {/* Hero */}
-      <section className="py-16 sm:py-24 page-hero">
+      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/70 to-white border-b border-gray-100">
         <Container>
           <SectionHeading
-            variant="dark"
             eyebrow="Join Our Engineering Team"
             title="Build the Future With EagleSoft"
             description="We are interested in people who enjoy solving problems, learning new technologies, and building useful software that organizations rely upon."
@@ -56,13 +55,13 @@ export default function CareersPage() {
       </section>
 
       {/* Engineering Culture */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white border-b border-gray-100">
         <Container>
           <div className="max-w-3xl mx-auto text-center mb-14">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0f172a] mb-4">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#212121] mb-4">
               Our Engineering Environment
             </h2>
-            <p className="text-base text-[#475569] leading-relaxed">
+            <p className="text-base text-gray-600 leading-relaxed">
               At EagleSoft Pvt Ltd, we foster a collaborative, disciplined culture where engineers, designers, and systems architects work directly on substantive enterprise and commercial challenges. We believe in clear ownership, respectful collaboration, and building systems designed to stand the test of time.
             </p>
           </div>
@@ -71,16 +70,16 @@ export default function CareersPage() {
             {principles.map((p) => (
               <div
                 key={p.title}
-                className="group p-8 rounded-3xl bg-white border border-[#e7e5ef] shadow-2xs hover:shadow-xl hover:border-[#7c3aed]/60 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+                className="group p-8 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#7c3aed]/15 text-[#6d28d9] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#7c3aed] group-hover:text-white transition-all duration-300 shadow-2xs">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name={p.icon} className="w-5 h-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#0f172a] mb-2.5 group-hover:text-[#6d28d9] transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 mb-2.5 group-hover:text-[#0288d1] transition-colors">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-[#475569] leading-relaxed">
+                  <p className="text-sm text-slate-600 leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
@@ -91,40 +90,40 @@ export default function CareersPage() {
       </section>
 
       {/* Open Positions Section (Honest status, zero fake jobs) */}
-      <section className="py-16 sm:py-24 bg-[#f6f5fb]">
+      <section className="py-16 sm:py-24 bg-slate-50/70 border-b border-slate-100">
         <Container size="narrow">
           <div className="text-center mb-10">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6d28d9]">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#0288d1]">
               Current Vacancies
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0f172a] mt-1">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
               Open Positions
             </h2>
           </div>
 
           {/* Prompt-mandated honest vacancy message */}
-          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-[#e7e5ef] shadow-[0_20px_50px_-30px_rgba(15,23,42,0.25)] text-center">
-            <div className="w-14 h-14 rounded-2xl bg-[#7c3aed]/15 text-[#6d28d9] flex items-center justify-center mx-auto mb-5 shadow-2xs">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] transition-all duration-300 text-center">
+            <div className="w-14 h-14 rounded-2xl bg-[#b3e5fc]/50 text-[#0288d1] flex items-center justify-center mx-auto mb-5 shadow-2xs">
               <Icon name="briefcase" className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold text-[#0f172a] mb-3">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
               No open positions at the moment.
             </h3>
 
-            <p className="text-sm sm:text-base text-[#475569] max-w-lg mx-auto leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto leading-relaxed mb-6">
               We are always interested in connecting with talented people. Send us your CV and we may contact you when a suitable opportunity becomes available.
             </p>
 
             {cvSubmitted ? (
-              <div className="p-4 rounded-xl bg-[#7c3aed]/[0.08] border border-[#7c3aed]/20 text-sm text-[#6d28d9] font-medium max-w-md mx-auto">
+              <div className="p-4 rounded-xl bg-[#f0f9ff] border border-[#b3e5fc] text-sm text-[#0288d1] font-medium max-w-md mx-auto">
                 Thank you for submitting your details! Your profile has been added to the EagleSoft talent roster. We will reach out when a relevant opportunity arises.
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="max-w-lg mx-auto text-left space-y-4 pt-2">
+              <form onSubmit={handleSubmit} className="max-w-lg mx-auto text-left space-y-4 pt-4 border-t border-gray-100">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[#334155] mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-1">
                       Full Name *
                     </label>
                     <input
@@ -133,11 +132,11 @@ export default function CareersPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Your Name"
-                      className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-[#334155] mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-1">
                       Email Address *
                     </label>
                     <input
@@ -146,20 +145,20 @@ export default function CareersPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="name@email.com"
-                      className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-[#334155] mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-1">
                       Specialization
                     </label>
                     <select
                       value={formData.specialization}
                       onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
-                      className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none bg-white"
                     >
                       <option>Full-Stack Web Development</option>
                       <option>Mobile App Engineering (React Native/Flutter)</option>
@@ -170,7 +169,7 @@ export default function CareersPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-[#334155] mb-1">
+                    <label className="block text-xs font-semibold text-gray-700 mb-1">
                       Portfolio / GitHub / LinkedIn
                     </label>
                     <input
@@ -178,13 +177,13 @@ export default function CareersPage() {
                       value={formData.portfolio}
                       onChange={(e) => setFormData({ ...formData, portfolio: e.target.value })}
                       placeholder="https://github.com/username"
-                      className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-[#334155] mb-1">
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">
                     Brief Introduction or CV Link
                   </label>
                   <textarea
@@ -192,7 +191,7 @@ export default function CareersPage() {
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     placeholder="Link to your resume (Google Drive, Dropbox) or summary of experience..."
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                   ></textarea>
                 </div>
 
@@ -204,9 +203,9 @@ export default function CareersPage() {
               </form>
             )}
 
-            <div className="mt-6 text-xs text-[#64748b]">
+            <div className="mt-6 pt-4 border-t border-gray-100 text-xs text-gray-500">
               You may also reach our recruitment team directly at:{" "}
-              <a href={`mailto:${siteConfig.email}`} className="text-[#6d28d9] font-semibold underline">
+              <a href={`mailto:${siteConfig.email}`} className="text-[#0288d1] font-semibold underline">
                 {siteConfig.email}
               </a>
             </div>

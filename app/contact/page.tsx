@@ -5,7 +5,7 @@ import { siteConfig } from "@/src/config/site";
 import { Container } from "@/src/components/common/Container";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
 import { Button } from "@/src/components/common/Button";
-import { Icon, IconName } from "@/src/components/common/Icon";
+import { Icon } from "@/src/components/common/Icon";
 
 const serviceOptions = [
   "Web Development",
@@ -25,49 +25,6 @@ const budgetOptions = [
   "PKR 300,000 - PKR 900,000 ($1,000 - $3,000)",
   "PKR 900,000 - PKR 2,500,000 ($3,000 - $8,000)",
   "PKR 2,500,000+ ($8,000+)",
-];
-
-const telHref = (p: string) => `tel:${p.replace(/\s/g, "")}`;
-
-const contactItems: {
-  label: string;
-  icon: IconName;
-  lines: { text: string; href?: string; external?: boolean }[];
-  note?: string;
-}[] = [
-  {
-    label: "Phone & WhatsApp",
-    icon: "phone",
-    lines: [
-      { text: siteConfig.phone, href: telHref(siteConfig.phone) },
-      { text: siteConfig.phone2, href: telHref(siteConfig.phone2) },
-    ],
-    note: "Mon to Fri, 9:00 AM to 6:00 PM PKT",
-  },
-  {
-    label: "Email",
-    icon: "envelope",
-    lines: [{ text: siteConfig.email, href: `mailto:${siteConfig.email}` }],
-    note: "We reply within one business day",
-  },
-  {
-    label: "Office Location",
-    icon: "location-dot",
-    lines: [
-      {
-        text: siteConfig.address.full,
-        href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.full)}`,
-        external: true,
-      },
-    ],
-    note: "Tap to open directions in Google Maps",
-  },
-  {
-    label: "Business Hours",
-    icon: "clock",
-    lines: [{ text: `${siteConfig.businessHours.days}, ${siteConfig.businessHours.hours}` }],
-    note: siteConfig.businessHours.status,
-  },
 ];
 
 export default function ContactPage() {
@@ -128,104 +85,135 @@ export default function ContactPage() {
   };
 
   return (
-    <div>
+    <div className="bg-white">
       {/* Hero */}
-      <section className="py-16 sm:py-24 page-hero">
+      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/70 to-white border-b border-gray-100">
         <Container>
           <SectionHeading
-            variant="dark"
             eyebrow="Start a Conversation"
             title="Let's Build Something That Matters"
             description="Whether you have an established project brief or need technical scoping for an emerging concept, our engineering team is ready to assist."
             align="center"
           />
-          {/* Quick contact row, visible as soon as the page opens */}
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={telHref(siteConfig.phone)}
-              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full bg-white text-[#0f172a] text-sm font-bold shadow-lg hover:bg-[#f3effe] transition-colors"
-            >
-              <Icon name="phone" className="text-[#7c3aed]" />
-              {siteConfig.phone}
-            </a>
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full bg-white text-[#0f172a] text-sm font-bold shadow-lg hover:bg-[#f3effe] transition-colors"
-            >
-              <Icon name="envelope" className="text-[#7c3aed]" />
-              {siteConfig.email}
-            </a>
-            <span className="inline-flex items-center gap-2.5 px-5 py-3 rounded-full border border-white/30 text-white text-sm font-bold">
-              <Icon name="location-dot" className="text-[#c4b5fd]" />
-              {siteConfig.address.city}, {siteConfig.address.country}
-            </span>
-          </div>
         </Container>
       </section>
 
       {/* Main Content: Info & Form */}
-      <section className="py-16 sm:py-24 bg-white">
+      <section className="py-16 sm:py-24 bg-white border-b border-gray-100">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left Column: Contact Details */}
-            <div className="lg:col-span-5 space-y-6">
+            {/* Left Column: Contact Cards & Business Info */}
+            <div className="lg:col-span-5 space-y-8">
               <div>
-                <span className="pill-label mb-4">Contact Details</span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0f172a] mt-3 mb-3">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#0288d1]">
+                  Corporate Office
+                </span>
+                <h2 className="text-2xl font-extrabold text-[#212121] mt-1 mb-4">
                   {siteConfig.companyName}
                 </h2>
-                <p className="text-[15px] text-[#475569] leading-relaxed">
-                  Call, email or visit our office. We reply to every inquiry within one business day.
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  We engage with companies nationwide and internationally, providing disciplined software engineering and transparent milestone governance.
                 </p>
               </div>
 
-              <ul className="space-y-4">
-                {contactItems.map((item) => (
-                  <li key={item.label} className="card p-5 flex items-start gap-4">
-                    <span className="icon-tile">
-                      <Icon name={item.icon} className="text-lg" />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-xs font-bold uppercase tracking-wider text-[#6d28d9] mb-1">{item.label}</p>
-                      {item.lines.map((line) =>
-                        line.href ? (
-                          <a
-                            key={line.text}
-                            href={line.href}
-                            target={line.external ? "_blank" : undefined}
-                            rel={line.external ? "noopener noreferrer" : undefined}
-                            className="block text-base font-bold text-[#0f172a] hover:text-[#6d28d9] transition-colors break-words"
-                          >
-                            {line.text}
-                          </a>
-                        ) : (
-                          <p key={line.text} className="text-base font-bold text-[#0f172a] break-words">
-                            {line.text}
-                          </p>
-                        )
-                      )}
-                      {item.note && <p className="text-sm text-[#64748b] mt-1">{item.note}</p>}
+              <div className="space-y-4">
+                {/* Location */}
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                    <Icon name="location-dot" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Office Location
                     </div>
-                  </li>
-                ))}
-              </ul>
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
+                      {siteConfig.address.full}
+                    </div>
+                    <div className="text-xs text-slate-500 mt-0.5">
+                      {siteConfig.address.country}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                    <Icon name="envelope" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Direct Email
+                    </div>
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5">
+                      <a
+                        href={`mailto:${siteConfig.email}`}
+                        className="hover:text-[#0288d1] transition-colors"
+                      >
+                        {siteConfig.email}
+                      </a>
+                    </div>
+                    <div className="text-xs text-slate-500 mt-0.5">
+                      Inquiries acknowledged within 1 business day
+                    </div>
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                    <Icon name="phone" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Phone & WhatsApp
+                    </div>
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
+                      {siteConfig.phone}
+                    </div>
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
+                      {siteConfig.phone2}
+                    </div>
+                    <div className="text-xs text-slate-500 mt-0.5">
+                      Mon – Fri, 9:00 AM – 6:00 PM PKT
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hours */}
+                <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                    <Icon name="clock" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Business Hours
+                    </div>
+                    <div className="text-sm font-semibold text-slate-900 mt-0.5 group-hover:text-[#0288d1] transition-colors">
+                      {siteConfig.businessHours.days}: {siteConfig.businessHours.hours}
+                    </div>
+                    <div className="text-xs text-slate-500 mt-0.5">
+                      {siteConfig.businessHours.status}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Column: Inquiry Form */}
             <div className="lg:col-span-7">
-              <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e7e5ef] shadow-[0_20px_50px_-30px_rgba(15,23,42,0.25)]">
+              <div className="p-6 sm:p-8 rounded-2xl bg-white border border-gray-200/90 shadow-sm">
                 {isSuccess ? (
                   <div className="text-center py-12 px-4">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/15 ring-1 ring-emerald-500/30 flex items-center justify-center">
-                      <Icon name="check-circle" className="w-9 h-9 text-emerald-600" />
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#b3e5fc]/50 flex items-center justify-center text-[#0288d1]">
+                      <Icon name="check-circle" className="w-10 h-10 text-[#0288d1]" />
                     </div>
-                    <h3 className="text-2xl font-bold text-[#0f172a] mb-2">
+                    <h3 className="text-2xl font-bold text-[#212121] mb-2">
                       Inquiry Received
                     </h3>
-                    <p className="text-[#475569] max-w-md mx-auto mb-6 text-sm sm:text-base leading-relaxed">
+                    <p className="text-gray-600 max-w-md mx-auto mb-6 text-sm sm:text-base leading-relaxed">
                       Thank you for contacting EagleSoft Pvt Ltd, <span className="font-semibold">{formData.name}</span>. An engineering scoping representative will review your inquiry and follow up shortly.
                     </p>
-                    <div className="p-4 rounded-lg bg-white border border-[#e7e5ef] text-left text-xs sm:text-sm text-[#334155] max-w-md mx-auto mb-6 space-y-1">
+                    <div className="p-4 rounded-lg bg-gray-50 border border-gray-200 text-left text-xs sm:text-sm text-gray-700 max-w-md mx-auto mb-6 space-y-1">
                       <div>
                         <span className="font-semibold">Service:</span> {formData.service}
                       </div>
@@ -239,17 +227,17 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="mb-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-[#0f172a]">
+                    <div className="border-b border-gray-100 pb-4 mb-6">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#212121]">
                         Project Consultation & Inquiry
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#64748b] mt-1">
+                      <p className="text-xs sm:text-sm text-gray-500 mt-1">
                         Provide your project requirements for scoping, timeline estimates, and architectural review.
                       </p>
                     </div>
 
                     {errorMessage && (
-                      <div role="alert" className="p-3 text-sm text-red-600 bg-red-500/10 border border-red-500/30 rounded-xl">
+                      <div className="p-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
                         {errorMessage}
                       </div>
                     )}
@@ -258,40 +246,38 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="contact-name"
-                          className="block text-xs font-semibold text-[#334155] mb-1"
+                          className="block text-xs font-semibold text-gray-700 mb-1"
                         >
-                          Full Name <span className="text-red-600">*</span>
+                          Full Name <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
                           id="contact-name"
                           name="name"
-                          autoComplete="name"
                           required
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="Your Name"
-                          className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                         />
                       </div>
 
                       <div>
                         <label
                           htmlFor="contact-email"
-                          className="block text-xs font-semibold text-[#334155] mb-1"
+                          className="block text-xs font-semibold text-gray-700 mb-1"
                         >
-                          Work Email <span className="text-red-600">*</span>
+                          Work Email <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="email"
                           id="contact-email"
                           name="email"
-                          autoComplete="email"
                           required
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="name@company.com"
-                          className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                         />
                       </div>
                     </div>
@@ -300,7 +286,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="contact-phone"
-                          className="block text-xs font-semibold text-[#334155] mb-1"
+                          className="block text-xs font-semibold text-gray-700 mb-1"
                         >
                           Phone / WhatsApp
                         </label>
@@ -308,18 +294,17 @@ export default function ContactPage() {
                           type="tel"
                           id="contact-phone"
                           name="phone"
-                          autoComplete="tel"
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="+92 300 0000000"
-                          className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                         />
                       </div>
 
                       <div>
                         <label
                           htmlFor="contact-company"
-                          className="block text-xs font-semibold text-[#334155] mb-1"
+                          className="block text-xs font-semibold text-gray-700 mb-1"
                         >
                           Company / Organization
                         </label>
@@ -327,11 +312,10 @@ export default function ContactPage() {
                           type="text"
                           id="contact-company"
                           name="company"
-                          autoComplete="organization"
                           value={formData.company}
                           onChange={handleChange}
                           placeholder="Company Name"
-                          className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                         />
                       </div>
                     </div>
@@ -340,7 +324,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="contact-service"
-                          className="block text-xs font-semibold text-[#334155] mb-1"
+                          className="block text-xs font-semibold text-gray-700 mb-1"
                         >
                           Primary Service Required
                         </label>
@@ -349,7 +333,7 @@ export default function ContactPage() {
                           name="service"
                           value={formData.service}
                           onChange={handleChange}
-                          className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none bg-white"
                         >
                           {serviceOptions.map((opt) => (
                             <option key={opt} value={opt}>
@@ -362,7 +346,7 @@ export default function ContactPage() {
                       <div>
                         <label
                           htmlFor="contact-budget"
-                          className="block text-xs font-semibold text-[#334155] mb-1"
+                          className="block text-xs font-semibold text-gray-700 mb-1"
                         >
                           Estimated Budget (Optional)
                         </label>
@@ -371,7 +355,7 @@ export default function ContactPage() {
                           name="budget"
                           value={formData.budget}
                           onChange={handleChange}
-                          className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                          className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none bg-white"
                         >
                           {budgetOptions.map((opt) => (
                             <option key={opt} value={opt}>
@@ -385,9 +369,9 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="contact-message"
-                        className="block text-xs font-semibold text-[#334155] mb-1"
+                        className="block text-xs font-semibold text-gray-700 mb-1"
                       >
-                        Project Details & Message <span className="text-red-600">*</span>
+                        Project Details & Message <span className="text-red-500">*</span>
                       </label>
                       <textarea
                         id="contact-message"
@@ -397,7 +381,7 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Tell us about the software you need built, existing bottlenecks, timelines, or specific technical requirements..."
-                        className="w-full px-3.5 py-2.5 text-sm rounded-xl outline-none"
+                        className="w-full px-3.5 py-2.5 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-[#03a9f4] outline-none"
                       ></textarea>
                     </div>
 

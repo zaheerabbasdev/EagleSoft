@@ -40,8 +40,6 @@ import {
   faLock,
   faPaperPlane,
   faStar,
-  faCircleExclamation,
-  faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faLinkedinIn,
@@ -49,7 +47,6 @@ import {
   faInstagram,
   faGithub,
   faXTwitter,
-  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
 
@@ -99,8 +96,6 @@ export const icons = {
   lock: faLock,
   send: faPaperPlane,
   star: faStar,
-  "circle-exclamation": faCircleExclamation,
-  "arrow-up": faArrowUp,
 
   // Brands
   linkedin: faLinkedinIn,
@@ -108,7 +103,6 @@ export const icons = {
   instagram: faInstagram,
   github: faGithub,
   twitter: faXTwitter,
-  whatsapp: faWhatsapp,
 };
 
 export type IconName = keyof typeof icons;

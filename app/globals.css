@@ -1,334 +1,167 @@
 @import "tailwindcss";
 @import "@fortawesome/fontawesome-svg-core/styles.css";
 
-/*
- * EagleSoft brand colours on a light, card-based layout.
- * Layout language: light sections, dark brand bands, pill labels,
- * two-tone headings, white cards with tinted icon tiles.
- */
 :root {
-  --primary: #7c3aed;
-  --primary-dark: #6d28d9;
-  --primary-deep: #4c1d95;
-  --accent: #2563eb;
-  --ink: #0f172a;
-  --body: #475569;
+  /* EagleSoft Brand Design Tokens */
+  --primary-dark: #0288d1;
+  --primary: #03a9f4;
+  --primary-light: #b3e5fc;
+  --accent: #448aff;
+  --foreground: #212121;
+  --background: #ffffff;
+  --background-alt: #f8fafc;
+  --background-subtle: #f0f9ff;
   --muted: #64748b;
-  --surface: #ffffff;
-  --surface-soft: #f6f5fb;
-  --tint: #f3effe;
-  --line: #e7e5ef;
-  --band: #0b0b1a;
-  --band-2: #12122a;
+  --muted-light: #94a3b8;
+  --border: #e2e8f0;
+  --white: #ffffff;
 }
 
 @theme {
-  --color-primary: #7c3aed;
-  --color-primary-dark: #6d28d9;
-  --color-accent: #2563eb;
-  --color-ink: #0f172a;
-  --color-body: #475569;
-  --color-soft: #f6f5fb;
-  --color-tint: #f3effe;
-  --color-line: #e7e5ef;
-  --color-band: #0b0b1a;
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: var(--font-rajdhani), var(--font-jakarta), ui-sans-serif, sans-serif;
+  --color-primary-dark: #0288d1;
+  --color-primary: #03a9f4;
+  --color-primary-light: #b3e5fc;
+  --color-accent: #448aff;
+  --color-brand-foreground: #212121;
+  --color-brand-muted: #64748b;
+  --color-brand-muted-light: #94a3b8;
+  --color-brand-border: #e2e8f0;
+  --color-brand-bg-alt: #f8fafc;
+  --color-brand-bg-subtle: #f0f9ff;
+  --color-brand-white: #ffffff;
 }
 
-/* ─── Base ──────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
 }
 
 body {
-  background-color: var(--surface);
-  color: var(--body);
-  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Typography Hierarchy */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--ink);
+  color: var(--foreground);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
 p {
+  color: #475569;
   line-height: 1.7;
 }
 
+/* Focus Indicator */
 *:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
-::selection {
-  background: rgba(124, 58, 237, 0.2);
-  color: var(--ink);
+/* Premium Card & Ambient Effects */
+.card-premium {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ─── Skip Link ───────────────────────────────── */
-.skip-link {
-  position: absolute;
-  left: 16px;
-  top: -100px;
-  z-index: 100;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: var(--primary);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.875rem;
-  transition: top 0.2s;
-}
-.skip-link:focus {
-  top: 12px;
+.card-premium:hover {
+  transform: translateY(-2px);
+  border-color: #03a9f4;
+  box-shadow: 0 12px 24px -8px rgba(2, 136, 209, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
 }
 
-/* ─── Brand text ──────────────────────────────── */
-.text-gradient,
+/* Subtle Technical Grid Background */
+.bg-grid-tech {
+  background-image: linear-gradient(to right, rgba(2, 136, 209, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(2, 136, 209, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(179, 229, 252, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+/* Gradient Text Accent */
 .text-gradient-brand {
-  background: linear-gradient(120deg, #7c3aed 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #0288d1 0%, #03a9f4 50%, #448aff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-/* Lighter gradient for text on dark bands */
-.text-gradient-soft {
-  background: linear-gradient(120deg, #c4b5fd 0%, #93c5fd 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
-/* ─── Pill eyebrow label ──────────────────────── */
-.pill-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--primary-dark);
-  background: var(--tint);
-  border: 1px solid rgba(124, 58, 237, 0.18);
-}
-.pill-label-dark {
-  color: #ddd6fe;
-  background: rgba(124, 58, 237, 0.14);
-  border-color: rgba(167, 139, 250, 0.35);
+.pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* ─── Dark brand band (hero, page headers, feature band) ── */
-.brand-band,
-.page-hero {
-  position: relative;
-  isolation: isolate;
-  color: #fff;
-  background:
-    radial-gradient(ellipse 60% 70% at 0% 0%, rgba(124, 58, 237, 0.35), transparent 65%),
-    radial-gradient(ellipse 50% 60% at 100% 100%, rgba(37, 99, 235, 0.25), transparent 65%),
-    linear-gradient(160deg, #12122a 0%, #0b0b1a 60%, #0d0b22 100%);
-}
-.brand-band::before,
-.page-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: linear-gradient(to bottom, black 20%, transparent 95%);
-  pointer-events: none;
-}
-.brand-band :is(h1, h2, h3, h4),
-.page-hero :is(h1, h2, h3, h4) {
-  color: #fff;
-}
-
-/* ─── Cards ───────────────────────────────────── */
-.card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
-}
-.card-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(124, 58, 237, 0.35);
-  box-shadow: 0 22px 44px -20px rgba(76, 29, 149, 0.28);
-}
-
-.icon-tile {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: var(--tint);
-  color: var(--primary);
-  flex-shrink: 0;
-  transition: background 0.3s, color 0.3s;
-}
-.group:hover .icon-tile-fill {
-  background: var(--primary);
-  color: #fff;
-}
-
-.tag-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #334155;
-  background: #fff;
-  border: 1px solid var(--line);
-}
-
-/* Dashed offset frame behind feature images */
-.dashed-frame {
-  position: relative;
-}
-.dashed-frame::after {
-  content: "";
-  position: absolute;
-  inset: 22px -18px -18px 22px;
-  border: 2px dashed rgba(124, 58, 237, 0.35);
-  border-radius: 28px;
-  z-index: -1;
-}
-
-/* ─── Scroll Reveal ───────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: 80ms; }
-.reveal-delay-2 { transition-delay: 160ms; }
-.reveal-delay-3 { transition-delay: 240ms; }
-.reveal-delay-4 { transition-delay: 320ms; }
-.reveal-delay-5 { transition-delay: 400ms; }
-
-/* ─── Animations ──────────────────────────────── */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
+
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 28s linear infinite;
 }
+
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 .fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
+  animation: fadeIn 0.2s ease-in-out forwards;
 }
 
-@keyframes pulseRing {
-  0%   { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.45); }
-  70%  { box-shadow: 0 0 0 16px rgba(124, 58, 237, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
-}
-.pulse-ring {
-  animation: pulseRing 2.4s ease-out infinite;
-}
-
-@keyframes kenburns {
-  from { transform: scale(1); }
-  to   { transform: scale(1.08); }
-}
-.kenburns {
-  animation: kenburns 7s ease-out forwards;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Button shine sweep */
-@keyframes btnShine {
-  from { left: -100%; }
-  to   { left: 200%; }
-}
-.btn-shine {
-  position: relative;
-  overflow: hidden;
-}
-.btn-shine::after {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60%; height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.22), transparent);
-  transform: skewX(-20deg);
-  animation: btnShine 3.5s ease-in-out 1.5s infinite;
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-/* ─── Form Inputs ─────────────────────────────── */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-input[type="search"],
-input[type="url"],
-select,
-textarea {
-  background: #fff;
-  border: 1px solid #dddbe8;
-  color: var(--ink);
-  border-radius: 14px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: rgba(124, 58, 237, 0.6);
-  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
-  outline: none;
-}
-input::placeholder,
-textarea::placeholder {
-  color: #94a3b8;
+::-webkit-scrollbar-track {
+  background: #f8fafc;
 }
 
-/* Fields placed on dark bands */
-.field-dark {
-  background: rgba(255, 255, 255, 0.06) !important;
-  border-color: rgba(255, 255, 255, 0.14) !important;
-  color: #fff !important;
-}
-.field-dark::placeholder {
-  color: rgba(255, 255, 255, 0.45) !important;
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
 }
 
-/* ─── Scrollbar ───────────────────────────────── */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #f1f0f7; }
-::-webkit-scrollbar-thumb { background: #c9c3e0; border-radius: 6px; border: 2px solid #f1f0f7; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+::-webkit-scrollbar-thumb:hover {
+  background: #0288d1;
+}
 
-/* ─── Reduced Motion ──────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -336,17 +169,4 @@ textarea::placeholder {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes pulseRingGreen {
-  0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-  70%  { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-.pulse-ring-green {
-  animation: pulseRingGreen 2.4s ease-out infinite;
 }

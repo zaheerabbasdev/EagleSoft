@@ -5,7 +5,7 @@ import eagleIcon from "@/public/images/eaglesoft-icon.png";
 import eagleIconWhite from "@/public/images/eaglesoft-icon-white.png";
 
 interface LogoProps {
-  variant?: "light" | "dark"; // "light" (default) = white/light backgrounds; "dark" = dark brand bands
+  variant?: "light" | "dark"; // "light" = for white/light bg; "dark" = for #0288d1/dark bg
   size?: "sm" | "md" | "lg";
   className?: string;
   showTagline?: boolean;
@@ -41,15 +41,15 @@ export function Logo({
       <div className="flex flex-col justify-center gap-1">
         <span
           className={`font-extrabold tracking-tight leading-none ${dims.wordmark} ${
-            isDarkBg ? "text-white" : "text-[#0f172a]"
+            isDarkBg ? "text-white" : "text-slate-900"
           }`}
         >
-          Eagle<span className={isDarkBg ? "text-gradient-soft" : "text-gradient"}>Soft</span>
+          Eagle<span className={isDarkBg ? "text-[#b3e5fc]" : "text-[#0288d1]"}>Soft</span>
         </span>
         {showTagline && (
           <span
             className={`text-[10px] font-semibold tracking-wide uppercase ${
-              isDarkBg ? "text-white/60" : "text-[#64748b]"
+              isDarkBg ? "text-white/75" : "text-slate-500"
             }`}
           >
             Software &amp; Technology
@@ -63,7 +63,7 @@ export function Logo({
     return (
       <Link
         href="/"
-        className="group inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c3aed] rounded-md transition-opacity hover:opacity-95"
+        className="group inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] rounded-md transition-opacity hover:opacity-95"
         aria-label="EagleSoft Pvt Ltd Home"
       >
         {content}

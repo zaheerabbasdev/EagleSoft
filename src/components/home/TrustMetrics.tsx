@@ -1,44 +1,32 @@
 import React from "react";
 import { Container } from "@/src/components/common/Container";
+import { Icon } from "@/src/components/common/Icon";
 import { trustMetricsData } from "@/src/config/home";
 
-interface TrustMetricsProps {
-  /** "dark" renders inside a dark brand band without its own section padding */
-  variant?: "light" | "dark";
-}
-
-function StatsGrid({ dark }: { dark: boolean }) {
+export function TrustMetrics() {
   return (
-    <div
-      className={`reveal grid grid-cols-2 lg:grid-cols-4 rounded-3xl border overflow-hidden ${
-        dark ? "border-white/15 bg-white/[0.03]" : "border-[#e7e5ef] bg-white"
-      }`}
-    >
-      {trustMetricsData.map((metric, i) => (
-        <div
-          key={metric.id}
-          className={`px-4 py-8 sm:py-10 text-center ${
-            i > 0 ? (dark ? "lg:border-l border-white/15" : "lg:border-l border-[#e7e5ef]") : ""
-          } ${i % 2 === 1 ? (dark ? "border-l border-white/15" : "border-l border-[#e7e5ef]") : ""} ${
-            i > 1 ? (dark ? "border-t lg:border-t-0 border-white/15" : "border-t lg:border-t-0 border-[#e7e5ef]") : ""
-          }`}
-        >
-          <div className={`font-display text-4xl sm:text-5xl font-bold leading-none ${dark ? "text-gradient-soft" : "text-gradient"}`}>
-            {metric.value}
-          </div>
-          <div className={`mt-3 text-sm font-semibold ${dark ? "text-white/80" : "text-[#475569]"}`}>{metric.label}</div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-export function TrustMetrics({ variant = "light" }: TrustMetricsProps) {
-  if (variant === "dark") return <StatsGrid dark />;
-  return (
-    <section className="py-12 sm:py-16 bg-white">
+    <section className="relative py-10 sm:py-12 bg-white border-b border-slate-100">
       <Container>
-        <StatsGrid dark={false} />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {trustMetricsData.map((metric) => (
+            <div
+              key={metric.id}
+              className="flex flex-col items-center text-center gap-2 sm:flex-row sm:text-left sm:gap-4"
+            >
+              <div className="w-11 h-11 rounded-xl bg-[#b3e5fc]/50 text-[#0288d1] flex items-center justify-center flex-shrink-0">
+                <Icon name={metric.icon} className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-[#0288d1] leading-none">
+                  {metric.value}
+                </div>
+                <div className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+                  {metric.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </Container>
     </section>
   );

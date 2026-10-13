@@ -1,82 +1,131 @@
 import React from "react";
-import Image from "next/image";
 import { Container } from "@/src/components/common/Container";
 import { Button } from "@/src/components/common/Button";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
 import { Icon } from "@/src/components/common/Icon";
-import { siteConfig } from "@/src/config/site";
-
-const promises = [
-  "Custom-built around your team & workflows",
-  "Plain-English communication",
-  "Weekly working demos",
-  "Battle-tested, reliable architecture",
-  "You own 100% of source code & data",
-  "No vendor lock-in or hostage fees",
-  "Modern, mobile-friendly interfaces",
-  "Dedicated post-launch support",
-];
+import { friendlyBenefitsData } from "@/src/config/home";
 
 export function CompanyIntro() {
-  return (
-    <section className="py-20 sm:py-28 bg-white overflow-hidden">
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-16 items-center">
-          {/* Image with dashed offset frame */}
-          <div className="reveal relative dashed-frame isolate mr-5 mb-5">
-            <div className="relative aspect-[4/3.4] rounded-[28px] overflow-hidden shadow-2xl shadow-[#0f172a]/15">
-              <Image
-                src="/hero/hero-slide-1.jpg"
-                alt="The EagleSoft engineering team at work"
-                fill
-                sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute bottom-5 right-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-sm font-bold text-[#0f172a] shadow-xl">
-              <Icon name="location-dot" className="w-3.5 h-3.5 text-[#7c3aed]" />
-              {siteConfig.address.city}, {siteConfig.address.country}
-            </div>
-          </div>
+  const comparisonItems = [
+    {
+      problem: "Rigid templates that don't fit your business",
+      solution: "Custom-built around your exact team & workflows",
+    },
+    {
+      problem: "Confusing technical jargon & no clear timeline",
+      solution: "Plain English communication & weekly working demos",
+    },
+    {
+      problem: "Software that breaks during busy working hours",
+      solution: "Battle-tested, offline-resilient architectures",
+    },
+    {
+      problem: "Vendor lock-in & endless monthly hostage fees",
+      solution: "You own 100% of your source code & database",
+    },
+  ];
 
-          {/* Copy */}
-          <div>
-            <SectionHeading
-              eyebrow="About EagleSoft"
-              title="Software Shouldn't Be"
-              highlight="Complicated"
-              align="left"
-              className="mb-6"
-            />
-            <p className="reveal text-base sm:text-lg text-[#475569] leading-relaxed mb-7">
-              {siteConfig.description} We take away the headaches of software development, so you get a
-              reliable digital tool your team actually enjoys using every day.
-            </p>
-            <ul className="reveal grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 mb-9">
-              {promises.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-[15px] text-[#1e293b]">
-                  <span className="mt-0.5 w-5 h-5 rounded-full bg-[#7c3aed] text-white flex items-center justify-center flex-shrink-0">
-                    <Icon name="check" className="w-2.5 h-2.5" />
-                  </span>
-                  {item}
+  return (
+    <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
+      <Container>
+        {/* Section Header */}
+        <SectionHeading
+          eyebrow="The EagleSoft Difference"
+          title="Software Shouldn't Be Complicated"
+          description="We take away the headaches of software development. You get a reliable digital tool that your team actually enjoys using every day."
+          align="center"
+          className="mb-16"
+        />
+
+        {/* Comparison Showcase (Frustrating Way vs The EagleSoft Way) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
+          {/* The Frustrating Way Card */}
+          <div className="p-7 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 text-left">
+            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200">
+              <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm">
+                ✕
+              </span>
+              <div>
+                <h3 className="text-lg font-bold text-slate-900">The Usual Frustration</h3>
+                <span className="text-xs text-slate-500">Generic software & poor agencies</span>
+              </div>
+            </div>
+
+            <ul className="space-y-4">
+              {comparisonItems.map((item) => (
+                <li key={item.problem} className="flex items-start gap-3 text-sm text-slate-600">
+                  <span className="text-red-500 font-bold mt-0.5">✕</span>
+                  <span>{item.problem}</span>
                 </li>
               ))}
             </ul>
-            <div className="reveal flex flex-col sm:flex-row gap-3.5">
-              <Button href="/about" variant="primary" size="md" icon={<Icon name="arrow-right" className="w-3.5 h-3.5" />}>
-                More About Us
-              </Button>
-              <Button
-                href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-                variant="secondary"
-                size="md"
-                iconPosition="left"
-                icon={<Icon name="phone" className="w-3.5 h-3.5 text-[#7c3aed]" />}
-              >
-                {siteConfig.phone}
-              </Button>
-            </div>
           </div>
+
+          {/* The EagleSoft Way Card (Vibrant, Appealing) */}
+          <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-2 border-[#0288d1] text-left shadow-lg relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-[#0288d1] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-bl-xl">
+              Guaranteed Standard
+            </div>
+
+            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#b3e5fc]/60">
+              <span className="w-8 h-8 rounded-full bg-[#0288d1] text-white flex items-center justify-center font-bold text-sm">
+                ✓
+              </span>
+              <div>
+                <h3 className="text-lg font-bold text-slate-900">The EagleSoft Way</h3>
+                <span className="text-xs text-[#0288d1] font-semibold">Reliable, tailored & easy to use</span>
+              </div>
+            </div>
+
+            <ul className="space-y-4">
+              {comparisonItems.map((item) => (
+                <li key={item.solution} className="flex items-start gap-3 text-sm font-semibold text-slate-800">
+                  <span className="text-[#0288d1] font-extrabold mt-0.5">✓</span>
+                  <span>{item.solution}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* 4 Core Friendly Benefits (Array of objects) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {friendlyBenefitsData.map((benefit) => (
+            <div
+              key={benefit.id}
+              className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#03a9f4] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <div className="w-12 h-12 rounded-xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center shadow-2xs">
+                    <Icon name={benefit.icon} className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                    {benefit.badge}
+                  </span>
+                </div>
+
+                <h3 className="text-base font-bold text-slate-900 mb-2">
+                  {benefit.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  {benefit.desc}
+                </p>
+              </div>
+
+              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-[#0288d1]">
+                <Icon name="check" className="w-3.5 h-3.5 text-[#03a9f4]" />
+                <span>EagleSoft Promise</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Learn More Button */}
+        <div className="mt-14 text-center">
+          <Button href="/about" variant="secondary" size="md">
+            Learn More About Our Company & Values
+          </Button>
         </div>
       </Container>
     </section>

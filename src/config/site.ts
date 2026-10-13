@@ -18,8 +18,6 @@ export const siteConfig = {
   email: "eaglesoftpvtltd@gmail.com", // Centralized business email placeholder
   phone: "+92 3139804929",       // Centralized contact phone placeholder
   phone2: "+92 3239827216",
-  // WhatsApp number in international format without "+" (used for wa.me links)
-  whatsapp: "923139804929",
   address: {
     line1: "Software Technology Park",
     city: "Shewa Adda Swabi",
