@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, Sora } from "next/font/google";
 import "@/src/lib/fontawesome";
 import "./globals.css";
 import { siteConfig } from "@/src/config/site";
@@ -6,6 +7,11 @@ import { Navbar } from "@/src/components/layout/Navbar";
 import { Footer } from "@/src/components/layout/Footer";
 import { QuoteModalProvider } from "@/src/context/QuoteModalContext";
 import { QuoteModal } from "@/src/components/common/QuoteModal";
+import { WhatsAppFloat } from "@/src/components/common/WhatsAppFloat";
+import { ScrollToTop } from "@/src/components/common/ScrollToTop";
+
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+const sora = Sora({ subsets: ["latin"], weight: ["600", "700", "800"], display: "swap", variable: "--font-sora" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://eaglesoft.pk"),
@@ -54,13 +60,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`h-full antialiased ${inter.variable} ${sora.variable}`}>
       <body className="min-h-full flex flex-col font-sans bg-white text-[#212121]">
         <QuoteModalProvider>
           <Navbar />
           <main className="flex-1 w-full">{children}</main>
           <Footer />
           <QuoteModal />
+          <WhatsAppFloat />
+          <ScrollToTop />
         </QuoteModalProvider>
       </body>
     </html>

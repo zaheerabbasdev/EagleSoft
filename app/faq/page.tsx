@@ -30,7 +30,7 @@ export default function FAQPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/70 to-white border-b border-gray-100">
+      <section className="py-16 sm:py-24 hero-soft border-b border-[#e6eefa]">
         <Container>
           <SectionHeading
             eyebrow="Help & Clarifications"
@@ -54,7 +54,7 @@ export default function FAQPage() {
                   onClick={() => setActiveCategory(category)}
                   className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] ${
                     isActive
-                      ? "bg-[#0288d1] text-white shadow-xs"
+                      ? "bg-blue-grad text-white shadow-xs"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
@@ -89,7 +89,7 @@ export default function FAQPage() {
                     <span
                       className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                         isOpen
-                          ? "bg-[#0288d1] text-white shadow-2xs rotate-180"
+                          ? "bg-blue-grad text-white shadow-2xs rotate-180"
                           : "bg-slate-100 text-slate-500 group-hover:bg-[#b3e5fc]/60 group-hover:text-[#0288d1]"
                       }`}
                     >

@@ -1,11 +1,21 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+
+export interface QuotePrefill {
+  fullName?: string;
+  email?: string;
+  phone?: string;
+  description?: string;
+}
 
 interface QuoteModalContextType {
   isOpen: boolean;
   selectedService: string;
-  openQuoteModal: (service?: string) => void;
+  prefill: QuotePrefill;
+  /** Increments on every open so the modal can apply fresh prefill data */
+  openId: number;
+  openQuoteModal: (service?: string, prefill?: QuotePrefill) => void;
   closeQuoteModal: () => void;
 }
 
@@ -14,26 +24,31 @@ const QuoteModalContext = createContext<QuoteModalContextType | undefined>(undef
 export function QuoteModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedService, setSelectedService] = useState("");
+  const [prefill, setPrefill] = useState<QuotePrefill>({});
+  const [openId, setOpenId] = useState(0);
 
-  const openQuoteModal = (service?: string) => {
+  const openQuoteModal = useCallback((service?: string, data?: QuotePrefill) => {
     setSelectedService(service || "");
+    setPrefill(data || {});
+    setOpenId((n) => n + 1);
     setIsOpen(true);
-    // Prevent body scroll when modal is open
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "hidden";
-    }
-  };
+  }, []);
 
-  const closeQuoteModal = () => {
-    setIsOpen(false);
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "unset";
-    }
-  };
+  const closeQuoteModal = useCallback(() => setIsOpen(false), []);
+
+  // Lock page scroll while the modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isOpen]);
 
   return (
     <QuoteModalContext.Provider
-      value={{ isOpen, selectedService, openQuoteModal, closeQuoteModal }}
+      value={{ isOpen, selectedService, prefill, openId, openQuoteModal, closeQuoteModal }}
     >
       {children}
     </QuoteModalContext.Provider>

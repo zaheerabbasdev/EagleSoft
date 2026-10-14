@@ -1,131 +1,73 @@
 import React from "react";
+import Link from "next/link";
 import { Container } from "@/src/components/common/Container";
-import { Button } from "@/src/components/common/Button";
 import { SectionHeading } from "@/src/components/common/SectionHeading";
 import { Icon } from "@/src/components/common/Icon";
-import { friendlyBenefitsData } from "@/src/config/home";
+import { friendlyBenefitsData, friendlyServicesData } from "@/src/config/home";
+import { siteConfig } from "@/src/config/site";
 
 export function CompanyIntro() {
-  const comparisonItems = [
-    {
-      problem: "Rigid templates that don't fit your business",
-      solution: "Custom-built around your exact team & workflows",
-    },
-    {
-      problem: "Confusing technical jargon & no clear timeline",
-      solution: "Plain English communication & weekly working demos",
-    },
-    {
-      problem: "Software that breaks during busy working hours",
-      solution: "Battle-tested, offline-resilient architectures",
-    },
-    {
-      problem: "Vendor lock-in & endless monthly hostage fees",
-      solution: "You own 100% of your source code & database",
-    },
-  ];
-
   return (
-    <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
+    <section className="bg-white pb-20 sm:pb-24">
       <Container>
-        {/* Section Header */}
-        <SectionHeading
-          eyebrow="The EagleSoft Difference"
-          title="Software Shouldn't Be Complicated"
-          description="We take away the headaches of software development. You get a reliable digital tool that your team actually enjoys using every day."
-          align="center"
-          className="mb-16"
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-7">
+            <SectionHeading
+              eyebrow="Software House in Pakistan"
+              title="Software Shouldn't Be"
+              highlight="Complicated"
+              align="left"
+              className="mb-6"
+            />
+            <p className="text-[17px] text-[#526072] leading-relaxed">{siteConfig.description}</p>
+            <p className="mt-4 text-[17px] text-[#526072] leading-relaxed">
+              Every project runs the same way: a clear scope and transparent quote, weekly demos of working
+              software, plain-English communication, and full ownership of your code and data at handover.
+            </p>
 
-        {/* Comparison Showcase (Frustrating Way vs The EagleSoft Way) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
-          {/* The Frustrating Way Card */}
-          <div className="p-7 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200 text-left">
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-200">
-              <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm">
-                ✕
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-slate-900">The Usual Frustration</h3>
-                <span className="text-xs text-slate-500">Generic software & poor agencies</span>
-              </div>
-            </div>
-
-            <ul className="space-y-4">
-              {comparisonItems.map((item) => (
-                <li key={item.problem} className="flex items-start gap-3 text-sm text-slate-600">
-                  <span className="text-red-500 font-bold mt-0.5">✕</span>
-                  <span>{item.problem}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* The EagleSoft Way Card (Vibrant, Appealing) */}
-          <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-br from-[#f0f9ff] to-[#b3e5fc]/30 border-2 border-[#0288d1] text-left shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-[#0288d1] text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-bl-xl">
-              Guaranteed Standard
-            </div>
-
-            <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#b3e5fc]/60">
-              <span className="w-8 h-8 rounded-full bg-[#0288d1] text-white flex items-center justify-center font-bold text-sm">
-                ✓
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-slate-900">The EagleSoft Way</h3>
-                <span className="text-xs text-[#0288d1] font-semibold">Reliable, tailored & easy to use</span>
-              </div>
-            </div>
-
-            <ul className="space-y-4">
-              {comparisonItems.map((item) => (
-                <li key={item.solution} className="flex items-start gap-3 text-sm font-semibold text-slate-800">
-                  <span className="text-[#0288d1] font-extrabold mt-0.5">✓</span>
-                  <span>{item.solution}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* 4 Core Friendly Benefits (Array of objects) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {friendlyBenefitsData.map((benefit) => (
-            <div
-              key={benefit.id}
-              className="p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#03a9f4] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-5">
-                  <div className="w-12 h-12 rounded-xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center shadow-2xs">
-                    <Icon name={benefit.icon} className="w-5 h-5" />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700">
-                    {benefit.badge}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {friendlyBenefitsData.map((b) => (
+                <div key={b.id} className="flex items-start gap-3.5">
+                  <span className="w-10 h-10 rounded-xl bg-[#eff8ff] text-[#0288d1] flex items-center justify-center flex-shrink-0">
+                    <Icon name={b.icon} className="w-4 h-4" />
                   </span>
+                  <div>
+                    <p className="font-bold text-[#0b1220] text-[15px]">{b.title}</p>
+                    <p className="text-sm text-[#526072] mt-0.5 leading-relaxed">{b.desc}</p>
+                  </div>
                 </div>
-
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {benefit.desc}
-                </p>
-              </div>
-
-              <div className="mt-5 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-[#0288d1]">
-                <Icon name="check" className="w-3.5 h-3.5 text-[#03a9f4]" />
-                <span>EagleSoft Promise</span>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Learn More Button */}
-        <div className="mt-14 text-center">
-          <Button href="/about" variant="secondary" size="md">
-            Learn More About Our Company & Values
-          </Button>
+          {/* Popular services box */}
+          <aside className="lg:col-span-5 rounded-3xl bg-[#f3f9ff] border border-[#dcebfa] p-7 sm:p-8">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0288d1] mb-5">Popular Services</p>
+            <ul className="space-y-1">
+              {friendlyServicesData.slice(0, 6).map((s) => (
+                <li key={s.id}>
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="group flex items-center gap-3 py-2.5 text-[15px] font-semibold text-[#0b1220] hover:text-[#0288d1] transition-colors"
+                  >
+                    <span className="w-2 h-2 rotate-45 bg-[#03a9f4] flex-shrink-0" aria-hidden="true" />
+                    {s.title}
+                    <Icon name="arrow-right" className="ml-auto w-3 h-3 text-[#94a3b8] group-hover:text-[#0288d1] group-hover:translate-x-1 transition-all" />
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/contact"
+                  className="group flex items-center gap-3 py-2.5 text-[15px] font-semibold text-[#0b1220] hover:text-[#0288d1] transition-colors"
+                >
+                  <span className="w-2 h-2 rotate-45 bg-[#03a9f4] flex-shrink-0" aria-hidden="true" />
+                  Visit our {siteConfig.address.city} office
+                  <Icon name="arrow-right" className="ml-auto w-3 h-3 text-[#94a3b8] group-hover:text-[#0288d1]" />
+                </Link>
+              </li>
+            </ul>
+          </aside>
         </div>
       </Container>
     </section>

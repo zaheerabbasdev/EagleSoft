@@ -3,53 +3,68 @@ import React from "react";
 interface SectionHeadingProps {
   eyebrow?: string;
   title: string;
+  /**
+   * Words shown in the blue gradient after the title.
+   * Omit to highlight the last word automatically; pass `false` for a plain title.
+   */
+  highlight?: string | false;
   description?: string;
   align?: "left" | "center";
-  variant?: "light" | "dark"; // "dark" = for #0288d1 dark backgrounds
+  /** "light" for white sections, "dark" for navy bands */
+  variant?: "light" | "dark";
   className?: string;
   titleAs?: "h1" | "h2" | "h3";
+}
+
+function splitTitle(title: string, highlight: string | false | undefined) {
+  if (highlight === false) return { lead: title, accent: "" };
+  if (typeof highlight === "string") return { lead: title, accent: highlight };
+  const words = title.trim().split(" ");
+  if (words.length < 2) return { lead: title, accent: "" };
+  const take = words.length >= 5 ? 2 : 1;
+  return { lead: words.slice(0, -take).join(" "), accent: words.slice(-take).join(" ") };
 }
 
 export function SectionHeading({
   eyebrow,
   title,
+  highlight,
   description,
   align = "center",
   variant = "light",
   className = "",
   titleAs = "h2",
 }: SectionHeadingProps) {
-  const isDark = variant === "dark";
   const TitleTag = titleAs;
+  const isDark = variant === "dark";
+  const { lead, accent } = splitTitle(title, highlight);
+  const centered = align === "center";
 
-  const alignmentClasses =
-    align === "center"
-      ? "text-center items-center mx-auto"
-      : "text-left items-start";
-
-  const eyebrowClasses = isDark
-    ? "bg-white/15 text-white border-white/20"
-    : "bg-[#b3e5fc]/60 text-[#0288d1] border-[#b3e5fc]";
-
-  const titleClasses = isDark ? "text-white" : "text-[#212121]";
-  const descClasses = isDark ? "text-white/85" : "text-[#475569]";
+  const size =
+    titleAs === "h1" ? "text-4xl sm:text-5xl lg:text-[3.5rem]" : "text-3xl sm:text-4xl lg:text-[2.8rem]";
 
   return (
-    <div className={`flex flex-col max-w-3xl ${alignmentClasses} ${className}`}>
-      {eyebrow && (
-        <span
-          className={`inline-flex items-center px-3 py-1 mb-3.5 text-xs font-semibold uppercase tracking-wider rounded-full border ${eyebrowClasses}`}
-        >
-          {eyebrow}
-        </span>
-      )}
+    <div
+      className={`flex flex-col max-w-3xl ${centered ? "text-center items-center mx-auto" : "text-left items-start"} ${className}`}
+    >
+      {eyebrow && <span className="eyebrow-line mb-4">{eyebrow}</span>}
       <TitleTag
-        className={`text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight ${titleClasses}`}
+        className={`${size} font-extrabold tracking-tight leading-[1.12] text-balance ${isDark ? "text-white" : "text-[#0b1220]"}`}
       >
-        {title}
+        {lead}
+        {accent && (
+          <>
+            {" "}
+            <span className="text-blue-grad">{accent}</span>
+          </>
+        )}
       </TitleTag>
       {description && (
-        <p className={`mt-3.5 text-base sm:text-lg font-normal leading-relaxed ${descClasses}`}>
+        <p
+          className={`mt-4 text-base sm:text-[17px] leading-relaxed text-pretty ${centered ? "" : "max-w-2xl"} ${
+            isDark ? "text-white/70" : "text-[#526072]"
+          }`}
+        >
           {description}
         </p>
       )}

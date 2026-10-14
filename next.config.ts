@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   // GoDaddy shared/cPanel hosting has no Node.js server to run `next start` on,
   // so the site is built as static HTML/CSS/JS and uploaded directly.
   output: "export",

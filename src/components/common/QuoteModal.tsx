@@ -37,7 +37,7 @@ const budgetOptions: BudgetOption[] = [
 ];
 
 export function QuoteModal() {
-  const { isOpen, selectedService, closeQuoteModal } = useQuoteModal();
+  const { isOpen, selectedService, prefill, openId, closeQuoteModal } = useQuoteModal();
   const modalRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState({
@@ -54,17 +54,26 @@ export function QuoteModal() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (selectedService) {
-      const matchedType = projectTypeOptions.find(
-        (t) => t.name.toLowerCase().includes(selectedService.toLowerCase()) ||
-               selectedService.toLowerCase().includes(t.name.toLowerCase())
-      );
-      if (matchedType) {
-        setFormData((prev) => ({ ...prev, projectType: matchedType.name }));
+  // Apply the requested service and any prefilled fields on each fresh open
+  const [appliedOpenId, setAppliedOpenId] = useState(0);
+  if (isOpen && openId !== appliedOpenId) {
+    setAppliedOpenId(openId);
+    setFormData((prev) => {
+      const next = { ...prev };
+      if (prefill.fullName) next.fullName = prefill.fullName;
+      if (prefill.email) next.email = prefill.email;
+      if (prefill.phone) next.phone = prefill.phone;
+      if (prefill.description) next.description = prefill.description;
+      if (selectedService) {
+        const s = selectedService.toLowerCase();
+        const matched = projectTypeOptions.find(
+          (t) => t.name.toLowerCase().includes(s) || s.includes(t.name.toLowerCase())
+        );
+        if (matched) next.projectType = matched.name;
       }
-    }
-  }, [selectedService]);
+      return next;
+    });
+  }
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -124,7 +133,7 @@ export function QuoteModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/70 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#0a1628]/70 backdrop-blur-md overflow-y-auto"
       role="dialog"
       aria-modal="true"
       aria-labelledby="quote-modal-title"
@@ -134,7 +143,7 @@ export function QuoteModal() {
         className="relative w-full max-w-2xl my-6 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden fade-in text-[#212121]"
       >
         {/* Modal Top Bar */}
-        <div className="flex items-center justify-between px-6 py-4 bg-[#0288d1] text-white border-b border-[#03a9f4]/40">
+        <div className="flex items-center justify-between px-6 py-4 bg-blue-grad text-white">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#b3e5fc]">
               <Icon name="shield" className="w-3.5 h-3.5" />

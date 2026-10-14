@@ -21,7 +21,7 @@ export default function ProjectsPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/70 to-white border-b border-gray-100">
+      <section className="py-16 sm:py-24 hero-soft border-b border-[#e6eefa]">
         <Container>
           <SectionHeading
             eyebrow="Live in the Real World"
@@ -45,7 +45,7 @@ export default function ProjectsPage() {
                   onClick={() => setActiveCategory(category)}
                   className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] ${
                     isActive
-                      ? "bg-[#0288d1] text-white shadow-xs"
+                      ? "bg-blue-grad text-white shadow-xs"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >

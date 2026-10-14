@@ -1,181 +1,153 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import { Container } from "@/src/components/common/Container";
 import { Button } from "@/src/components/common/Button";
 import { Icon } from "@/src/components/common/Icon";
 import { useQuoteModal } from "@/src/context/QuoteModalContext";
-import { heroBackgroundSlidesData } from "@/src/config/home";
+import { heroBackgroundSlidesData, techStackData, teamData, trustMetricsData } from "@/src/config/home";
+
+const hero = heroBackgroundSlidesData[0];
+const checks = ["100% Code Ownership", "Weekly Working Demos", "Dedicated Post-Launch Support"];
+
+const fieldClass =
+  "w-full px-4 py-3.5 text-sm rounded-xl bg-[#f5f9fe] border border-[#e1ecf8] text-[#0b1220] placeholder:text-[#8a97a8] focus:bg-white focus:border-[#03a9f4] focus:ring-4 focus:ring-[#03a9f4]/15 outline-none transition";
 
 export function Hero() {
   const { openQuoteModal } = useQuoteModal();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [idea, setIdea] = useState("");
+  const [form, setForm] = useState({ fullName: "", email: "", phone: "", description: "" });
 
-  const totalSlides = heroBackgroundSlidesData.length;
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
-
-  // Auto-advance slide every 6 seconds when not paused
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [isPaused, nextSlide]);
-
-  const currentSlide = heroBackgroundSlidesData[currentIndex];
+  const projects = trustMetricsData.find((m) => m.id === "metric-projects");
+  const satisfaction = trustMetricsData.find((m) => m.id === "metric-satisfaction");
 
   return (
-    <section
-      className="relative overflow-hidden bg-slate-950 min-h-[580px] lg:min-h-[660px] flex flex-col justify-between"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      aria-roledescription="carousel"
-      aria-label="EagleSoft Corporate Showcase"
-    >
-      {/* Background Images Carousel with Smooth Cross-Fade */}
-      <div className="absolute inset-0 z-0">
-        {heroBackgroundSlidesData.map((slide, index) => {
-          const isActive = index === currentIndex;
-          return (
-            <div
-              key={slide.id}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-100 scale-100" : "opacity-0 scale-105 pointer-events-none"
-              }`}
-              style={{ transitionProperty: "opacity, transform" }}
-            >
-              <Image
-                src={slide.image}
-                alt={slide.badge}
-                fill
-                priority={index === 0}
-                className="object-cover object-center brightness-[0.85]"
-              />
-            </div>
-          );
-        })}
+    <section className="hero-soft overflow-hidden" aria-label="EagleSoft software company">
+      <Container className="relative pt-14 pb-14 sm:pt-20 lg:pt-20 lg:pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          {/* Left: message */}
+          <div className="lg:col-span-7">
+            <span className="pill-eyebrow">
+              <span className="w-2 h-2 rounded-full bg-[#03a9f4] shadow-[0_0_10px_#03a9f4]" aria-hidden="true" />
+              {hero.badge}
+            </span>
 
-        {/* High-Contrast Gradient Dark Overlay (Ensures text is 100% readable) */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-900/60"
-          aria-hidden="true"
-        />
-        {/* Subtle Ambient Vignette */}
-        <div
-          className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-black/40"
-          aria-hidden="true"
-        />
-      </div>
-
-      {/* Hero Foreground Content Upon the Background */}
-      <div className="relative z-10 pt-20 sm:pt-28 pb-14 flex-1 flex flex-col justify-center">
-        <Container>
-          <div className="max-w-3xl text-left">
-            {/* Slide Badge with Live Pulsing Dot */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0288d1]/30 border border-[#03a9f4]/50 text-[#b3e5fc] text-xs font-extrabold tracking-wider uppercase mb-6 backdrop-blur-md shadow-lg">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#03a9f4] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#03a9f4]"></span>
-              </span>
-              <span>{currentSlide.badge}</span>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white! tracking-tight leading-[1.12] mb-6 drop-shadow-md">
-              {currentSlide.titleLine1} <br />
-              <span className="text-[#03a9f4]">{currentSlide.titleHighlight}</span>
+            <h1 className="mt-6 text-[2.6rem] sm:text-6xl lg:text-[4.1rem] font-extrabold leading-[1.04] tracking-[-0.045em] text-[#0b1220]">
+              Building <span className="underline-swoosh text-blue-grad">Reliable</span> Software.{" "}
+              Empowering Your Business.
             </h1>
 
-            {/* Description Paragraph */}
-            <p className="text-base sm:text-lg lg:text-xl text-slate-200! leading-relaxed max-w-2xl mb-10 drop-shadow-sm font-normal">
-              {currentSlide.description}
-            </p>
+            <p className="mt-6 text-base sm:text-lg text-[#526072] leading-relaxed max-w-xl">{hero.description}</p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={() => openQuoteModal(currentSlide.titleHighlight)}
-                icon={<Icon name="arrow-right" className="w-4 h-4" />}
-                className="shadow-lg hover:shadow-cyan-500/25 px-8 py-3.5 text-base font-bold bg-[#03a9f4] hover:bg-[#0288d1]"
+            {/* Idea box */}
+            <form
+              className="mt-8 flex items-center max-w-xl rounded-full bg-white border border-[#e1ecf8] shadow-[0_14px_40px_-22px_rgba(2,136,209,0.55)] pl-6 pr-1.5 py-1.5"
+              onSubmit={(e) => {
+                e.preventDefault();
+                openQuoteModal(undefined, idea.trim() ? { description: idea.trim() } : undefined);
+              }}
+            >
+              <label htmlFor="hero-idea" className="sr-only">
+                Describe your project idea
+              </label>
+              <input
+                id="hero-idea"
+                value={idea}
+                onChange={(e) => setIdea(e.target.value)}
+                placeholder="e.g. A POS system for my retail store"
+                className="flex-1 min-w-0 !border-0 !bg-transparent !shadow-none !ring-0 text-[15px] text-[#0b1220] placeholder:text-[#8a97a8] outline-none py-2.5"
+              />
+              <button
+                type="submit"
+                aria-label="Continue with this idea"
+                className="w-11 h-11 rounded-full bg-blue-grad text-white flex items-center justify-center flex-shrink-0 hover:scale-105 transition-transform cursor-pointer"
               >
-                {currentSlide.primaryCtaText}
+                <Icon name="arrow-right" className="w-4 h-4" />
+              </button>
+            </form>
+
+            {/* Secondary action + trust row */}
+            <div className="mt-6 flex flex-wrap items-center gap-6">
+              <Button href={hero.secondaryCtaHref} variant="secondary" size="lg" iconPosition="left" icon={<Icon name="laptop-code" className="w-4 h-4 text-[#0288d1]" />}>
+                {hero.secondaryCtaText}
               </Button>
-              <Button
-                href={currentSlide.secondaryCtaHref}
-                variant="outline-white"
-                size="lg"
-                icon={<Icon name="laptop-code" className="w-4 h-4 text-[#b3e5fc]" />}
-                iconPosition="left"
-                className="bg-white/10 backdrop-blur-md border-white/40 hover:bg-white/20 px-8 py-3.5 text-base"
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-1.5">
+                  {teamData.slice(0, 4).map((m) => (
+                    <span
+                      key={m.id}
+                      className="w-9 h-9 rounded-full ring-2 ring-white bg-blue-grad text-white text-[11px] font-bold flex items-center justify-center"
+                      aria-hidden="true"
+                    >
+                      {m.initials}
+                    </span>
+                  ))}
+                </div>
+                <div className="leading-tight">
+                  <div className="flex gap-0.5 text-[#03a9f4]" aria-label="5 star rating">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Icon key={i} name="star" className="w-3 h-3" />
+                    ))}
+                  </div>
+                  <p className="text-[13px] text-[#526072] mt-0.5">
+                    <strong className="text-[#0b1220]">{projects?.value} projects</strong> · {satisfaction?.value} satisfaction
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <ul className="mt-8 pt-6 border-t border-[#e6eefa] flex flex-wrap gap-x-7 gap-y-3">
+              {checks.map((c) => (
+                <li key={c} className="flex items-center gap-2 text-sm font-semibold text-[#1b2433]">
+                  <Icon name="check" className="w-3.5 h-3.5 text-[#0288d1]" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right: strategy call form */}
+          <div className="lg:col-span-5">
+            <div className="relative rounded-3xl bg-white border border-[#e1ecf8] p-7 sm:p-8 shadow-[0_30px_70px_-30px_rgba(2,136,209,0.45)]">
+              <h2 className="text-2xl font-extrabold text-[#0b1220]">Book Your Free Strategy Call</h2>
+              <p className="text-sm text-[#526072] mt-1.5">Tell us about your project. We respond within one business day.</p>
+              <form
+                className="mt-6 space-y-3.5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  openQuoteModal(undefined, form);
+                }}
               >
-                {currentSlide.secondaryCtaText}
-              </Button>
+                <input aria-label="Full name" autoComplete="name" placeholder="Full Name*" className={fieldClass} value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} />
+                <input aria-label="Business email" type="email" autoComplete="email" placeholder="Business Email*" className={fieldClass} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                <input aria-label="WhatsApp number" type="tel" autoComplete="tel" placeholder="WhatsApp e.g. +92 300 1234567" className={fieldClass} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+                <textarea aria-label="What are we building" rows={3} placeholder="What are we building?*" className={`${fieldClass} resize-none`} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-xl bg-blue-grad text-white font-bold shadow-lg shadow-[#0288d1]/30 hover:-translate-y-0.5 transition-transform cursor-pointer"
+                >
+                  Book My Strategy Call
+                </button>
+              </form>
+              <p className="mt-4 flex items-start gap-2 text-xs text-[#526072]">
+                <Icon name="lock" className="w-3 h-3 mt-0.5 text-[#0288d1]" />
+                Your idea stays confidential. NDA available on request.
+              </p>
             </div>
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
 
-      {/* Dots Carousel Navigation Bar */}
-      <div className="relative z-10 pb-8 sm:pb-12">
-        <Container>
-          <div className="flex items-center justify-between border-t border-white/15 pt-6">
-            {/* Left/Right Arrow Navigation */}
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={prevSlide}
-                className="p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] cursor-pointer"
-                aria-label="Previous slide"
-              >
-                <Icon name="arrow-left" className="w-3.5 h-3.5" />
-              </button>
-              <button
-                type="button"
-                onClick={nextSlide}
-                className="p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white border border-white/20 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] cursor-pointer"
-                aria-label="Next slide"
-              >
-                <Icon name="arrow-right" className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Clickable Dots Carousel Indicators */}
-            <div className="flex items-center gap-3">
-              {heroBackgroundSlidesData.map((slide, index) => {
-                const isActive = index === currentIndex;
-                return (
-                  <button
-                    key={slide.id}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`transition-all duration-300 rounded-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#03a9f4] ${
-                      isActive
-                        ? "w-8 h-2.5 bg-[#03a9f4] shadow-[0_0_12px_rgba(3,169,244,0.8)]"
-                        : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
-                    }`}
-                    aria-label={`Go to slide ${index + 1}: ${slide.badge}`}
-                  />
-                );
-              })}
-            </div>
-
-            {/* Slide Counter */}
-            <div className="text-xs font-mono text-slate-400 font-semibold">
-              0{currentIndex + 1} / 0{totalSlides}
-            </div>
-          </div>
-        </Container>
+      {/* Technology marquee */}
+      <div className="relative border-t border-[#e6eefa] bg-white/60 py-4 [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]" aria-hidden="true">
+        <div className="flex w-max animate-marquee">
+          {[...techStackData, ...techStackData].map((tech, i) => (
+            <span key={`${tech}-${i}`} className="mx-6 flex items-center gap-2.5 text-sm font-semibold text-[#3b4757]">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#03a9f4]" />
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

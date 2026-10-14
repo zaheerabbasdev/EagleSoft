@@ -19,12 +19,12 @@ export default function HomePage() {
       <TrustMetrics />
       <CompanyIntro />
       <ServicesPreview />
-      <TechStackShowcase />
       <SolutionsPreview />
-      <WhyEagleSoft />
       <ProcessSection />
+      <TechStackShowcase />
       <ProjectsPreview />
       <Testimonials />
+      <WhyEagleSoft />
       <TeamSection />
       <CtaSection />
     </>

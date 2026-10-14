@@ -59,7 +59,7 @@ export default function AboutPage() {
   return (
     <div className="bg-white">
       {/* About Page Hero */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/60 to-white border-b border-slate-100">
+      <section className="py-16 sm:py-24 hero-soft border-b border-[#e6eefa]">
         <Container>
           <SectionHeading
             eyebrow="Who We Are"
@@ -147,7 +147,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Mission */}
             <div className="group p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center mb-6 font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center mb-6 font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300">
                 <Icon name="bullseye" className="w-6 h-6" />
               </div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#0288d1]">
@@ -163,7 +163,7 @@ export default function AboutPage() {
 
             {/* Vision */}
             <div className="group p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center mb-6 font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300">
+              <div className="w-14 h-14 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center mb-6 font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300">
                 <Icon name="lightbulb" className="w-6 h-6" />
               </div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#0288d1]">
@@ -198,7 +198,7 @@ export default function AboutPage() {
                 className="group p-7 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name={belief.icon} className="w-5 h-5" />
                   </div>
                   <h4 className="text-lg font-bold text-slate-900 mb-2.5 group-hover:text-[#0288d1] transition-colors">

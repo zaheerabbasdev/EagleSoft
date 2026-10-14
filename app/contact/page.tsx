@@ -87,7 +87,7 @@ export default function ContactPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/70 to-white border-b border-gray-100">
+      <section className="py-16 sm:py-24 hero-soft border-b border-[#e6eefa]">
         <Container>
           <SectionHeading
             eyebrow="Start a Conversation"
@@ -119,7 +119,7 @@ export default function ContactPage() {
               <div className="space-y-4">
                 {/* Location */}
                 <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="location-dot" className="w-5 h-5" />
                   </div>
                   <div>
@@ -137,7 +137,7 @@ export default function ContactPage() {
 
                 {/* Email */}
                 <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="envelope" className="w-5 h-5" />
                   </div>
                   <div>
@@ -160,7 +160,7 @@ export default function ContactPage() {
 
                 {/* Phone */}
                 <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="phone" className="w-5 h-5" />
                   </div>
                   <div>
@@ -181,7 +181,7 @@ export default function ContactPage() {
 
                 {/* Hours */}
                 <div className="group p-5 rounded-2xl bg-slate-50 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:bg-white hover:-translate-y-1 transition-all duration-300 flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name="clock" className="w-5 h-5" />
                   </div>
                   <div>

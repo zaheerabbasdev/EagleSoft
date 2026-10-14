@@ -43,7 +43,7 @@ export default function CareersPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/70 to-white border-b border-gray-100">
+      <section className="py-16 sm:py-24 hero-soft border-b border-[#e6eefa]">
         <Container>
           <SectionHeading
             eyebrow="Join Our Engineering Team"
@@ -73,7 +73,7 @@ export default function CareersPage() {
                 className="group p-8 rounded-3xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-2xl hover:border-[#0288d1] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300 shadow-2xs">
                     <Icon name={p.icon} className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-2.5 group-hover:text-[#0288d1] transition-colors">

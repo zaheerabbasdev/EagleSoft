@@ -6,52 +6,38 @@ import { simpleStepsData } from "@/src/config/home";
 
 export function ProcessSection() {
   return (
-    <section className="py-20 sm:py-28 bg-white border-b border-slate-100">
+    <section className="py-20 sm:py-24 section-tint">
       <Container>
         <SectionHeading
-          eyebrow="Simple 3-Step Process"
-          title="How We Bring Your Software to Life"
-          description="No confusing technical jargon or unexpected surprises. Just clear milestones, weekly progress demos, and dependable execution."
-          align="center"
-          className="mb-16"
+          eyebrow="How We Work"
+          title="Our Process"
+          description="Clear milestones, weekly demos and honest estimates. You always know where your product stands."
+          align="left"
+          className="mb-14"
         />
 
-        {/* 3 Simple, Clear Steps (Array of objects) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {simpleStepsData.map((step) => (
-            <div
-              key={step.number}
-              className="relative p-8 rounded-3xl bg-slate-50/70 border border-slate-200/90 shadow-2xs hover:shadow-xl hover:border-[#0288d1] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="w-12 h-12 rounded-2xl bg-[#0288d1] text-white flex items-center justify-center font-black text-xl shadow-xs">
-                    {step.number}
-                  </span>
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-3 py-1 rounded-full bg-white text-[#0288d1] border border-[#b3e5fc]">
-                    {step.badge}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-900 mb-1">
-                  {step.title}
-                </h3>
-                <div className="text-xs font-semibold text-[#0288d1] mb-4">
-                  {step.shortDesc}
-                </div>
-
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  {step.fullDesc}
-                </p>
-              </div>
-
-              <div className="mt-8 pt-4 border-t border-slate-200/60 flex items-center gap-2 text-xs font-bold text-[#0288d1]">
-                <Icon name={step.icon} className="w-4 h-4 text-[#03a9f4]" />
-                <span>Step {step.number} Guarantee</span>
-              </div>
-            </div>
+        <ol className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
+          {simpleStepsData.map((step, i) => (
+            <li key={step.number} className="relative text-center px-2">
+              {i < simpleStepsData.length - 1 && (
+                <span
+                  className="hidden md:block absolute top-8 left-[calc(50%+48px)] right-[calc(-50%+48px)] text-[#9cc9ef]"
+                  aria-hidden="true"
+                >
+                  <span className="block h-px bg-gradient-to-r from-[#9cc9ef] to-transparent mt-[1px]" />
+                  <Icon name="arrow-right" className="absolute -top-[7px] right-0 w-3.5 h-3.5" />
+                </span>
+              )}
+              <span className="mx-auto w-16 h-16 rounded-full bg-blue-grad text-white flex items-center justify-center shadow-[0_14px_30px_-12px_rgba(2,136,209,0.7)]">
+                <Icon name={step.icon} className="text-xl" />
+              </span>
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#0288d1]">Step {step.number}</p>
+              <h3 className="mt-1.5 text-xl font-bold text-[#0b1220]">{step.title}</h3>
+              <p className="mt-1 text-sm font-semibold text-[#0288d1]">{step.shortDesc}</p>
+              <p className="mt-3 text-sm text-[#526072] leading-relaxed max-w-xs mx-auto">{step.fullDesc}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </Container>
     </section>
   );

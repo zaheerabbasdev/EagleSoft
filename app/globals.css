@@ -38,23 +38,30 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography Hierarchy */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--foreground);
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
+/* Typography Hierarchy (base layer so utility classes can override it) */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    color: #0b1220;
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+  }
+
+  p {
+    color: #475569;
+    line-height: 1.7;
+  }
 }
 
-p {
-  color: #475569;
-  line-height: 1.7;
+html {
+  scroll-padding-top: 90px;
 }
 
 /* Focus Indicator */
@@ -169,4 +176,199 @@ p {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ═══════════ Agency layout system (EagleSoft blues) ═══════════ */
+
+/* Soft hero background: blue glow + faint grid */
+.hero-soft {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 55% 60% at 0% 0%, rgba(68, 138, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 45% 55% at 100% 100%, rgba(3, 169, 244, 0.14), transparent 70%),
+    linear-gradient(180deg, #f7fbff 0%, #ffffff 100%);
+}
+.hero-soft::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(2, 136, 209, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(2, 136, 209, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Section tint */
+.section-tint {
+  background: #f5f9fe;
+}
+
+/* Dark navy band */
+.navy-band {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+  background:
+    radial-gradient(ellipse 50% 70% at 100% 0%, rgba(3, 169, 244, 0.22), transparent 70%),
+    radial-gradient(ellipse 45% 60% at 0% 100%, rgba(68, 138, 255, 0.2), transparent 70%),
+    linear-gradient(160deg, #0f1f3d 0%, #0a1628 100%);
+}
+.navy-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.navy-band :is(h1, h2, h3, h4) {
+  color: #fff;
+}
+.navy-band p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Eyebrow with leading line: ——  WHAT WE DO */
+.eyebrow-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0288d1;
+}
+.eyebrow-line::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #448aff, #03a9f4);
+}
+.navy-band .eyebrow-line {
+  color: #4fc3f7;
+}
+
+/* Pill eyebrow used in the hero */
+.pill-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #dbeafe;
+  box-shadow: 0 6px 20px -10px rgba(2, 136, 209, 0.35);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #0288d1;
+}
+
+/* Gradient highlight text */
+.text-blue-grad {
+  background: linear-gradient(90deg, #0277bd 0%, #03a9f4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.navy-band .text-blue-grad {
+  background: linear-gradient(90deg, #64b5f6 0%, #4fc3f7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Hand-drawn style underline under a highlighted word */
+.underline-swoosh {
+  position: relative;
+  display: inline-block;
+}
+.underline-swoosh::after {
+  content: "";
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: -0.08em;
+  height: 0.12em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #448aff, #03a9f4);
+  transform: rotate(-1deg);
+}
+
+/* Gradient icon tile */
+.icon-grad {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #448aff 0%, #03a9f4 100%);
+  box-shadow: 0 10px 22px -10px rgba(2, 136, 209, 0.7), inset 0 -3px 0 rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+/* Brand gradient fill for buttons / bands */
+.bg-blue-grad {
+  background: linear-gradient(90deg, #448aff 0%, #03a9f4 100%);
+}
+
+/* Agency card */
+.agency-card {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e6eefa;
+  border-radius: 20px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
+}
+.agency-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(3, 169, 244, 0.45);
+  box-shadow: 0 24px 48px -24px rgba(2, 136, 209, 0.35);
+}
+
+/* Soft blue glow in the corner of numbered cards */
+.card-glow-corner::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(68, 138, 255, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #0277bd;
+  background: #eff8ff;
+  border: 1px solid #cfe8fb;
+}
+
+/* WhatsApp pulse */
+@keyframes waPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  70%  { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.wa-pulse {
+  animation: waPulse 2.4s ease-out infinite;
 }

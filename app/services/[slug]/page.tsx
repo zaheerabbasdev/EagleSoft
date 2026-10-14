@@ -46,7 +46,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   return (
     <div className="bg-white">
       {/* Service Header */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-[#f0f9ff]/70 via-white to-white border-b border-gray-100">
+      <section className="py-16 sm:py-20 hero-soft border-b border-[#e6eefa]">
         <Container>
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 mb-6">

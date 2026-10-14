@@ -1,29 +1,20 @@
 import React from "react";
 import { Container } from "@/src/components/common/Container";
-import { Icon } from "@/src/components/common/Icon";
 import { trustMetricsData } from "@/src/config/home";
 
+/** Stats band: large gradient numbers separated by thin dividers. */
 export function TrustMetrics() {
   return (
-    <section className="relative py-10 sm:py-12 bg-white border-b border-slate-100">
+    <section className="bg-white py-14 sm:py-16">
       <Container>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {trustMetricsData.map((metric) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 rounded-3xl border border-[#e6eefa] bg-white shadow-[0_20px_50px_-35px_rgba(2,136,209,0.45)] overflow-hidden">
+          {trustMetricsData.map((metric, i) => (
             <div
               key={metric.id}
-              className="flex flex-col items-center text-center gap-2 sm:flex-row sm:text-left sm:gap-4"
+              className={`px-6 py-8 sm:py-10 text-center ${i % 2 === 1 ? "border-l" : ""} ${i >= 2 ? "border-t lg:border-t-0" : ""} ${i === 2 ? "lg:border-l" : ""} border-[#e6eefa]`}
             >
-              <div className="w-11 h-11 rounded-xl bg-[#b3e5fc]/50 text-[#0288d1] flex items-center justify-center flex-shrink-0">
-                <Icon name={metric.icon} className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-black text-[#0288d1] leading-none">
-                  {metric.value}
-                </div>
-                <div className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-                  {metric.label}
-                </div>
-              </div>
+              <div className="font-display text-4xl sm:text-5xl font-extrabold tracking-tight text-blue-grad">{metric.value}</div>
+              <div className="mt-2 text-sm font-semibold text-[#526072]">{metric.label}</div>
             </div>
           ))}
         </div>

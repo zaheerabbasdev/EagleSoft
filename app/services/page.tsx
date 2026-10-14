@@ -20,7 +20,7 @@ export default function ServicesPage() {
   return (
     <div className="bg-white">
       {/* Hero Header */}
-      <section className="py-16 sm:py-24 bg-gradient-to-b from-[#f0f9ff]/60 to-white border-b border-slate-100">
+      <section className="py-16 sm:py-24 hero-soft border-b border-[#e6eefa]">
         <Container>
           <SectionHeading
             eyebrow="Engineering Services"
@@ -54,7 +54,7 @@ export default function ServicesPage() {
                       }`}
                     >
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-2xl bg-[#b3e5fc]/60 text-[#0288d1] flex items-center justify-center font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300">
+                        <div className="w-14 h-14 rounded-2xl bg-blue-grad text-white shadow-[0_10px_22px_-10px_rgba(2,136,209,0.7)] flex items-center justify-center font-bold shadow-2xs group-hover:scale-110 group-hover:bg-[#0288d1] group-hover:text-white transition-all duration-300">
                           <Icon name={service.iconName} className="w-6 h-6" />
                         </div>
                         <div>
